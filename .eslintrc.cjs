@@ -5,6 +5,9 @@ module.exports = {
         "plugin:@typescript-eslint/stylistic",
         "prettier",
     ],
+    rules: {
+        "@typescript-eslint/no-explicit-any": "off",
+    },
     parser: "@typescript-eslint/parser",
     plugins: ["@typescript-eslint"],
     root: true,

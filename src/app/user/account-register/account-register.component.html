@@ -1,0 +1,77 @@
+<!-- <p class="fs-2 text-danger">account-login works with bootstrap!</p> -->
+
+<div class="container col-md-6 offset-md-3 mt-5">
+    <div class="card">
+        <h4 class="card-header">Register</h4>
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label class="form-label" for="first-name">First Name</label>
+                    <input id="first-name" type="text" formControlName="firstName" class="form-control" />
+                    <div *ngIf="formControls.firstName.errors && formControls.firstName.touched" class="text-danger">
+                        <div *ngIf="formControls.firstName.errors.required">First name is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="last-name">Last Name</label>
+                    <input id="last-name" type="text" formControlName="lastName" class="form-control" />
+                    <div *ngIf="formControls.lastName.errors && formControls.lastName.touched" class="text-danger">
+                        <div *ngIf="formControls.lastName.errors.required">Last name is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input id="email" type="email" formControlName="email" class="form-control" />
+                    <div *ngIf="formControls.email.errors && formControls.email.touched" class="text-danger">
+                        <div *ngIf="formControls.email.errors.required" class="text-danger">Email is required</div>
+                        <div *ngIf="formControls.email.errors.email" class="text-danger">
+                            Must be a valid email address
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">Password</label>
+                    <input
+                        id="password"
+                        type="password"
+                        formControlName="password"
+                        class="form-control"
+                        (keydown)="formControls.confirmPassword.reset()"
+                    />
+                    <div *ngIf="formControls.password.errors && formControls.password.touched" class="text-danger">
+                        <div *ngIf="formControls.password.errors.required" class="text-danger">
+                            Password is required
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="confirm-password">Confirm password</label>
+                    <input
+                        id="confirm-password"
+                        type="password"
+                        formControlName="confirmPassword"
+                        class="form-control"
+                    />
+                    <div
+                        *ngIf="formControls.confirmPassword.errors && formControls.confirmPassword.touched"
+                        class="text-danger"
+                    >
+                        <div *ngIf="formControls.confirmPassword.errors.required" class="text-danger">
+                            Confirmation Password is required
+                        </div>
+                        <div *ngIf="formControls.confirmPassword.errors.passwordsDoesntMatch" class="text-danger">
+                            Passwords are don't match
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button [disabled]="loading || form.invalid" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                        Register
+                    </button>
+                    <a routerLink="/login" class="btn btn-link">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

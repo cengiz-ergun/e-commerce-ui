@@ -1,12 +1,11 @@
+.*
+
 node_modules/
+tailwind.config.js
 
-# IDE - VSCode
-.vscode/*
-
-# System Files
-.DS_Store
 Thumbs.db
 {"mode":"full","isActive":false}
 
 # Docs files
 *_spec3.json
+
