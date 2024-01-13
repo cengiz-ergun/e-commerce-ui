@@ -1,6 +1,6 @@
 <!-- <p>layout-user works!</p> -->
 
-<nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="user">
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="user">
     <div class="navbar-nav">
         <a
             class="nav-item nav-link"
@@ -11,10 +11,43 @@
         >
         <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
     </div>
-</nav>
+</nav> -->
 
-<div class="container">
+<!-- <div class="container">
     <app-alert></app-alert>
-    <!-- <router-outlet></router-outlet> -->
+    <router-outlet></router-outlet>
     <ng-content></ng-content>
+</div> -->
+
+<!-- /.wrapper start -->
+<div id="wrapper">
+    <app-header></app-header>
+
+    <!-- ****** Top Discount Area Start ****** -->
+    <section class="top-discount-area d-md-flex align-items-center mb-5">
+        <!-- Single Discount Area -->
+        <div class="single-discount-area">
+            <h5>Free Shipping &amp; Returns</h5>
+            <h6><a href="#">BUY NOW</a></h6>
+        </div>
+        <!-- Single Discount Area -->
+        <div class="single-discount-area">
+            <h5>20% Discount for all dresses</h5>
+            <h6>USE CODE: Colorlib</h6>
+        </div>
+        <!-- Single Discount Area -->
+        <div class="single-discount-area">
+            <h5>20% Discount for students</h5>
+            <h6>USE CODE: Colorlib</h6>
+        </div>
+    </section>
+    <!-- ****** Top Discount Area End ****** -->
+
+    <!-- ****** Content Start ****** -->
+    <app-alert></app-alert>
+    <ng-content></ng-content>
+    <!-- ****** Content Finish ****** -->
+
+    <app-footer></app-footer>
 </div>
+<!-- /.wrapper end -->
