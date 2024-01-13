@@ -1,19 +1,9 @@
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="user">
-    <div class="navbar-nav">
-        <a
-            class="nav-item nav-link"
-            routerLink="/"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Home</a
-        >
-        <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
-    </div>
-</nav>
+<ng-container [ngSwitch]="pageLayoutService.layout$ | async">
+    <app-layout-user *ngSwitchCase="PageLayout.User">
+        <router-outlet></router-outlet>
+    </app-layout-user>
 
-<!-- main app container -->
-<div class="container">
-    <app-alert></app-alert>
-    <router-outlet></router-outlet>
-</div>
+    <app-layout-admin *ngSwitchCase="PageLayout.Admin">
+        <router-outlet></router-outlet>
+    </app-layout-admin>
+</ng-container>
