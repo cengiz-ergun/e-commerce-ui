@@ -6,7 +6,7 @@ import { BehaviorSubject } from "rxjs";
     providedIn: "root",
 })
 export class PageLayoutService {
-    private layoutSubject = new BehaviorSubject<PageLayout>(PageLayout.User);
+    private layoutSubject = new BehaviorSubject<PageLayout>(PageLayout.Blank);
 
     public layout$ = this.layoutSubject.asObservable();
 
