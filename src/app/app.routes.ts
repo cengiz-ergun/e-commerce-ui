@@ -21,4 +21,7 @@ export const routes: Routes = [
         },
         loadChildren: adminRoutes,
     },
+
+    // otherwise redirect to home
+    { path: "**", redirectTo: "" },
 ];
