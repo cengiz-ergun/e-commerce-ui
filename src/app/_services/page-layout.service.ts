@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { PageLayout } from "@app/_models/page-layout";
+import { PageLayout } from "@app/_models/enums/page-layout";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
