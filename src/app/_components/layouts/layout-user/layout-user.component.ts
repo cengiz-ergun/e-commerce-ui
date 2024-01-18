@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { AlertComponent } from "@app/_components/alert/alert.component";
 import { FooterComponent } from "@app/_components/sections/footer/footer.component";
 import { HeaderComponent } from "@app/_components/sections/header/header.component";
+import { TopDiscountAreaComponent } from "@app/_components/sections/top-discount-area/top-discount-area.component";
 import { User } from "@app/_models/user";
 import { AccountService } from "@app/_services/account.service";
 
@@ -18,6 +19,7 @@ import { AccountService } from "@app/_services/account.service";
         RouterLinkActive,
         HeaderComponent,
         FooterComponent,
+        TopDiscountAreaComponent,
     ],
     templateUrl: "./layout-user.component.html",
     styleUrl: "./layout-user.component.scss",

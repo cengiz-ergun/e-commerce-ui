@@ -1,3 +1,6 @@
+@import "../node_modules/primeng/resources/themes/lara-light-blue/theme.css";
+@import "../node_modules/primeng/resources/primeng.css";
+
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 
@@ -29,3 +32,13 @@ input.ng-untouched.ng-invalid {
 input.ng-untouched.ng-invalid:focus-within {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
 }
+
+// PrimeNG Checks Start
+div.widget-desc *.p-element {
+    display: block !important;
+    margin-bottom: 1rem;
+}
+div.p-checkbox.p-component {
+    margin-right: 0.5rem !important;
+}
+// PrimeNG Checks Finish

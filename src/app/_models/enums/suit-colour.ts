@@ -1,5 +1,4 @@
 export enum SuitColour {
-    Green,
     Red,
     Yellow,
     Black,

@@ -357,7 +357,7 @@ img {
     top: 0;
     -webkit-transition: all linear 500ms;
     transition: all linear 500ms;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 50px rgba(0, 0, 0, 0.2); */
 }
 
 #wrapper.karl-side-menu-open {
