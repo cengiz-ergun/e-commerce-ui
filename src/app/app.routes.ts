@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { setLayout } from "./_services/page-layout.resolver";
-import { PageLayout } from "./_models/page-layout";
+import { PageLayout } from "./_models/enums/page-layout";
 
 const userRoutes = () => import("./user/user.routes").then((x) => x.USER_ROUTES);
 
@@ -21,4 +21,7 @@ export const routes: Routes = [
         },
         loadChildren: adminRoutes,
     },
+
+    // otherwise redirect to home
+    { path: "**", redirectTo: "" },
 ];

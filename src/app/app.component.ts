@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { AlertComponent } from "./_components/alert/alert.component";
 import { PageLayoutService } from "./_services/page-layout.service";
-import { PageLayout } from "./_models/page-layout";
+import { PageLayout } from "./_models/enums/page-layout";
 import { LayoutUserComponent } from "./_components/layouts/layout-user/layout-user.component";
 import { LayoutAdminComponent } from "./_components/layouts/layout-admin/layout-admin.component";
 

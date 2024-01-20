@@ -1,0 +1,44 @@
+<ng-container *ngIf="fetchedSuits.length === 0; then skeleton; else fetchIsCompleted"> </ng-container>
+
+<ng-template #skeleton>
+    <div class="row">
+        <ng-container *ngFor="let mockItem of mockArrayForSkeleton; index as i">
+            <div class="col-12 col-sm-6 col-lg-4 single_gallery_item">
+                <div class="product-img">
+                    <!-- [style]="{ height: '5rem' }" -->
+                    <p-skeleton shape="rectangle" height="25rem"></p-skeleton>
+                </div>
+                <div class="product-description">
+                    <p-skeleton styleClass="mb-2" shape="rectangle" height="2rem" width="4rem"></p-skeleton>
+                    <p-skeleton styleClass="mb-4" shape="rectangle" height="1rem" width="100%"></p-skeleton>
+                    <p-skeleton styleClass="mb-4" shape="rectangle" height="2rem" width="6rem"></p-skeleton>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>
+
+<ng-template #fetchIsCompleted>
+    <div class="row">
+        <ng-container *ngFor="let suit of filteredSuits; index as i">
+            <div *ngIf="suit" class="col-12 col-sm-6 col-lg-4 single_gallery_item" data-wow-delay="0.2s">
+                <!-- Product Image -->
+                <div class="product-img">
+                    <img [src]="suit.imgPaths[0]" alt="" />
+                    <div class="product-quicview">
+                        <a href="#" data-toggle="modal" data-target="#quickview" (click)="quickViewProduct(suit)"
+                            ><i class="ti-plus"></i
+                        ></a>
+                    </div>
+                </div>
+                <!-- Product Description -->
+                <div class="product-description">
+                    <h4 class="product-price">{{ suit.price | currency: "₺" }}</h4>
+                    <p>{{ suit.primaryInfo }}</p>
+                    <!-- Add to Cart -->
+                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

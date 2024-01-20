@@ -2,9 +2,13 @@ import { HttpRequest, HttpResponse, HttpHandlerFn } from "@angular/common/http";
 import { of, throwError } from "rxjs";
 import { delay, materialize, dematerialize } from "rxjs/operators";
 import { User } from "../_models/user";
+import { Suit } from "@app/_models/suit";
+import { mockData } from "@assets/mock-data";
 
 const usersKey = "e-commerce-users";
 const users: User[] = JSON.parse(localStorage.getItem(usersKey)!) || [];
+
+const suits: Suit[] = mockData;
 
 export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHandlerFn) {
     // headers
@@ -18,6 +22,8 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
                 return authenticate();
             case url.endsWith("/users/register") && method === "POST":
                 return register();
+            case url.endsWith("/suits") && method === "GET":
+                return getSuits();
             default:
                 // pass through any requests not handled above
                 return next(request);
@@ -49,10 +55,14 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
         return ok();
     }
 
+    function getSuits() {
+        return ok(suits, 3000);
+    }
+
     // helper functions
 
-    function ok(body?: any) {
-        return of(new HttpResponse({ status: 200, body })).pipe(delay(500)); // delay observable to simulate server api call
+    function ok(body?: any, delaysInMiliseconds = 500) {
+        return of(new HttpResponse({ status: 200, body })).pipe(delay(delaysInMiliseconds)); // delay observable to simulate server api call
     }
 
     function error(message: string) {

@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable, map } from "rxjs";
 import { environment } from "@environments/environment";
 import { User } from "@app/_models/user";
+import { Suit } from "@app/_models/suit";
 
 @Injectable({ providedIn: "root" })
 export class AccountService {
@@ -42,5 +43,9 @@ export class AccountService {
 
     register(user: User) {
         return this.http.post(`${environment.apiUrl}/users/register`, user);
+    }
+
+    getAllSuits() {
+        return this.http.get<Suit[]>(`${environment.apiUrl}/suits`);
     }
 }

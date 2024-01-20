@@ -1,4 +1,6 @@
 <ng-container [ngSwitch]="pageLayoutService.layout$ | async">
+    <router-outlet *ngSwitchCase="PageLayout.Blank"></router-outlet>
+
     <app-layout-user *ngSwitchCase="PageLayout.User">
         <router-outlet></router-outlet>
     </app-layout-user>

@@ -1,6 +1,6 @@
 <!-- <p class="fs-2 text-danger">account-login works with bootstrap!</p> -->
 
-<div class="container col-md-6 offset-md-3 mt-5">
+<div class="container col-md-6 offset-md-3">
     <div class="card">
         <h4 class="card-header">Login</h4>
         <div class="card-body">
@@ -9,10 +9,8 @@
                     <label class="form-label" for="email">Email</label>
                     <input id="email" type="email" formControlName="email" class="form-control" />
                     <div *ngIf="formControls.email.errors && formControls.email.touched" class="text-danger">
-                        <div *ngIf="formControls.email.errors.required" class="text-danger">Email is required</div>
-                        <div *ngIf="formControls.email.errors.email" class="text-danger">
-                            Must be a valid email address
-                        </div>
+                        <div *ngIf="formControls.email.errors.required">Email is required</div>
+                        <div *ngIf="formControls.email.errors.email">Must be a valid email address</div>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -24,12 +22,12 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="d-flex align-items-center gap-4">
                     <button [disabled]="loading || form.invalid" class="btn btn-primary">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
                         Login
                     </button>
-                    <a routerLink="/register" class="btn btn-link">Register</a>
+                    <a routerLink="/register" class="text-secondary">Register</a>
                 </div>
             </form>
         </div>
