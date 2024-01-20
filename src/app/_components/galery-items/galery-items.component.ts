@@ -10,6 +10,7 @@ import { FilterByPriceRangeService } from "@app/_services/filter-by-price-range.
 import { FilterBySizeService } from "@app/_services/filter-by-size.service";
 import { first } from "rxjs";
 import { SkeletonModule } from "primeng/skeleton";
+import { QuickViewService } from "@app/_services/quick-view.service";
 // import { mockData as suits } from "@assets/mock-data";
 
 @Component({
@@ -33,10 +34,9 @@ export class GaleryItemsComponent implements OnInit {
         private filterByPriceRangeService: FilterByPriceRangeService,
         private filterByColourService: FilterByColourService,
         private filterBySizeService: FilterBySizeService,
-
         private filterApplyService: FilterApplyService,
-
-        private accountService: AccountService
+        private accountService: AccountService,
+        private quickViewService: QuickViewService
     ) {
         // this.suits = suits;
     }
@@ -81,5 +81,9 @@ export class GaleryItemsComponent implements OnInit {
                 this.filterApplyService.updateClickedState(false);
             }
         });
+    }
+
+    quickViewProduct(suit: Suit) {
+        this.quickViewService.updateSelectedSuit(suit);
     }
 }

@@ -26,7 +26,9 @@
                 <div class="product-img">
                     <img [src]="suit.imgPaths[0]" alt="" />
                     <div class="product-quicview">
-                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#quickview" (click)="quickViewProduct(suit)"
+                            ><i class="ti-plus"></i
+                        ></a>
                     </div>
                 </div>
                 <!-- Product Description -->

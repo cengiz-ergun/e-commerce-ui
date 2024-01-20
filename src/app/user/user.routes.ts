@@ -4,11 +4,15 @@ import { AccountRegisterComponent } from "./account-register/account-register.co
 import { HomeComponent } from "./home/home.component";
 // import { authGuard } from "@app/_helpers/auth.guard";
 import { ShopComponent } from "./shop/shop.component";
+import { CartComponent } from "./cart/cart.component";
+import { CheckoutComponent } from "./checkout/checkout.component";
 
 export const USER_ROUTES: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
     { path: "home", component: HomeComponent },
     { path: "shop", component: ShopComponent },
+    { path: "cart", component: CartComponent },
+    { path: "checkout", component: CheckoutComponent },
     { path: "login", component: AccountLoginComponent },
     { path: "register", component: AccountRegisterComponent },
 ];

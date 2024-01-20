@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { User } from "@app/_models/user";
 import { AccountService } from "@app/_services/account.service";
+import { CartService } from "@app/_services/cart.service";
 
 @Component({
     selector: "app-header",
@@ -14,8 +15,19 @@ import { AccountService } from "@app/_services/account.service";
 export class HeaderComponent {
     user?: User | null;
 
-    constructor(private accountService: AccountService) {
-        this.accountService.user.subscribe((x) => (this.user = x));
+    quantity = 0;
+
+    constructor(
+        private accountService: AccountService,
+        private cartService: CartService
+    ) {
+        this.accountService.user.subscribe((user) => (this.user = user));
+
+        this.cartService.cart$.subscribe((cart) => {
+            this.quantity = cart.cartItems.reduce((accumulator, currentItem) => {
+                return accumulator + currentItem.quantity;
+            }, 0);
+        });
     }
 
     logout() {

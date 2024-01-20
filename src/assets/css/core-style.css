@@ -1855,7 +1855,7 @@ img {
 }
 
 .cart_area table tbody tr td:first-child {
-    width: 70% !important;
+    /* width: 70% !important; */
 }
 
 .cart_product_img > a {
