@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { setLayout } from "./_services/page-layout.resolver";
 import { PageLayout } from "./_models/enums/page-layout";
+import { adminGuard } from "./_helpers/admin.guard";
 
 const userRoutes = () => import("./user/user.routes").then((x) => x.USER_ROUTES);
 
@@ -20,6 +21,7 @@ export const routes: Routes = [
             layout: setLayout(PageLayout.Admin),
         },
         loadChildren: adminRoutes,
+        canActivate: [adminGuard],
     },
 
     // otherwise redirect to home

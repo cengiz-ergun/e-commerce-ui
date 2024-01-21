@@ -4,6 +4,7 @@ import { delay, materialize, dematerialize } from "rxjs/operators";
 import { User } from "../_models/user";
 import { Suit } from "@app/_models/suit";
 import { mockData } from "@assets/mock-data";
+import { Role } from "@app/_models/enums/role";
 
 const usersKey = "e-commerce-users";
 const users: User[] = JSON.parse(localStorage.getItem(usersKey)!) || [];
@@ -36,9 +37,18 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
         const { email, password } = body;
         const user = users.find((x) => x.email === email && x.password === password);
         if (!user) return error("email or password is incorrect");
+
+        let token: string;
+        if (user.role === Role.admin) {
+            token = "fake-admin-jwt-token";
+        } else {
+            token = "fake-user-jwt-token";
+        }
+
         return ok({
             ...basicDetails(user),
-            token: "fake-jwt-token",
+            token: token,
+            role: user.role,
         });
     }
 
@@ -50,6 +60,7 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
         }
 
         user.id = users.length ? Math.max(...users.map((x) => x.id!)) + 1 : 1;
+        user.role = user.id === 1 ? Role.admin : Role.user;
         users.push(user);
         localStorage.setItem(usersKey, JSON.stringify(users));
         return ok();
