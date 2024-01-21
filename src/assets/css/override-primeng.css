@@ -1,0 +1,19 @@
+/* PrimeNG Checks Start */
+div.widget-desc *.p-element {
+    display: block !important;
+    margin-bottom: 1rem;
+}
+div.p-checkbox.p-component {
+    margin-right: 0.5rem !important;
+}
+/* PrimeNG Checks Finish */
+
+/* PrimeNG Checks text-align Start */
+.p-datatable .p-datatable-thead > tr > th {
+    text-align: center !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    text-align: center !important;
+}
+/* PrimeNG Checks text-align Finish */

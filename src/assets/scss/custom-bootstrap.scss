@@ -1,0 +1,11 @@
+$custom-theme-colors: (
+    app-primary: #ff084e,
+    app-secondary: #3a3a3a,
+    app-tertiary: #b8b8b8,
+);
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+$custom-font-sizes: (
+    7: $font-size-base * 0.8,
+);
+$font-sizes: map-merge($font-sizes, $custom-font-sizes);
