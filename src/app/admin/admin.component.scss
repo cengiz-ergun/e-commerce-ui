@@ -4,3 +4,11 @@
 
 // ✘ [ERROR] src/app/admin/admin.component.scss exceeded maximum budget. Budget 4.00 kB was not met by 353 bytes with a total of 4.34 kB.
 // TODO
+$surface-card: #ffffff;
+
+.admin-card {
+    background: $surface-card;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}

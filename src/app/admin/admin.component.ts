@@ -5,7 +5,6 @@ import { StyleClassModule } from "primeng/styleclass";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { FileUploadModule } from "primeng/fileupload";
-import { RatingModule } from "primeng/rating";
 import { TagModule } from "primeng/tag";
 import { DialogModule } from "primeng/dialog";
 import { DropdownModule } from "primeng/dropdown";
@@ -28,7 +27,6 @@ import { CommonModule } from "@angular/common";
         ToastModule,
         ToolbarModule,
         FileUploadModule,
-        RatingModule,
         TagModule,
         DialogModule,
         DropdownModule,
@@ -37,7 +35,6 @@ import { CommonModule } from "@angular/common";
         ConfirmDialogModule,
         FormsModule,
         CommonModule,
-        // BrowserAnimationsModule,
     ],
     templateUrl: "./admin.component.html",
     styleUrl: "./admin.component.scss",
@@ -55,8 +52,6 @@ export class AdminComponent implements OnInit {
 
     submitted = false;
 
-    statuses!: any[];
-
     constructor(
         private productService: ProductService,
         private messageService: MessageService,
@@ -65,12 +60,6 @@ export class AdminComponent implements OnInit {
 
     ngOnInit() {
         this.productService.getProducts().then((data) => (this.products = data));
-
-        this.statuses = [
-            { label: "INSTOCK", value: "instock" },
-            { label: "LOWSTOCK", value: "lowstock" },
-            { label: "OUTOFSTOCK", value: "outofstock" },
-        ];
     }
 
     openNew() {
@@ -174,18 +163,5 @@ export class AdminComponent implements OnInit {
             id += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return id;
-    }
-
-    getSeverity(status: string) {
-        switch (status) {
-            case "INSTOCK":
-                return "success";
-            case "LOWSTOCK":
-                return "warning";
-            case "OUTOFSTOCK":
-                return "danger";
-            default:
-                return "defaultss";
-        }
     }
 }
