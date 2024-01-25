@@ -1,14 +1,63 @@
+:root{
+    --app-primary : #ff084e;
+    --app-secondary : #3a3a3a;
+    --app-tertiary: #b8b8b8;
+}
+    
+
+
 input.ng-invalid {
-    border-color: #dc2626 !important;
+    border-color: var(--app-primary) !important;
     &:focus {
-        box-shadow: 0 0 0 3px #ffa5a5 !important;
+        box-shadow: 0 0 0 3px #ffa9c1 !important;
     }
 }
 
 input.ng-untouched.ng-invalid {
-    border: 1px solid #dee2e6 !important;
+    /* border: 1px solid #dee2e6 !important; */
+    border: 1px solid var(--app-tertiary) !important;
 }
 
 input.ng-untouched.ng-invalid:focus-within {
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+    /* box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important; */
+    box-shadow: 0 0 0 0.25rem var(--app-tertiary) !important;
+}
+
+a{
+    color: unset !important;
+}
+
+ul{
+    padding-left: 0 !important;
+}
+
+.form-control:focus{
+  border-color: var(--app-secondary) !important;
+  box-shadow: 0 0 0 0.25rem var(--app-tertiary) !important;
+}
+
+a[data-target="#quickview"] [class^="ti-"]{
+    color: white !important;
+}
+
+.app-active-link{
+    color: white !important;
+    background-color: var(--app-secondary) !important;
+}
+
+ul.navbar-nav li.nav-item a{
+    padding: 0.75rem 1.5rem !important;
+}
+
+.single_catagory_area:after{
+    background-color: var(--app-secondary);
+}
+
+a#scrollUp{
+    color: white !important;
+}
+
+*{
+    scroll-behavior: smooth !important;
+    
 }

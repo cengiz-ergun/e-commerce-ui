@@ -1,29 +1,32 @@
 import { NgClass, NgIf } from "@angular/common";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { AlertService } from "@app/_services/alert.service";
+import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
 
 @Component({
     selector: "app-alert",
     standalone: true,
     imports: [NgIf, NgClass],
-    templateUrl: "./alert.component.html",
-    styleUrl: "./alert.component.scss",
+    template: "",
 })
 export class AlertComponent implements OnInit, OnDestroy {
     private subscription!: Subscription;
     alert: any;
 
-    constructor(private alertService: AlertService) {}
+    constructor(
+        private alertService: AlertService,
+        private toastr: ToastrService
+    ) {}
 
     ngOnInit() {
         this.subscription = this.alertService.onAlert().subscribe((alert) => {
             switch (alert?.type) {
                 case "success":
-                    alert.cssClass = "alert alert-success";
+                    this.toastr.success(alert.message);
                     break;
                 case "error":
-                    alert.cssClass = "alert alert-danger";
+                    this.toastr.error(alert.message);
                     break;
             }
 

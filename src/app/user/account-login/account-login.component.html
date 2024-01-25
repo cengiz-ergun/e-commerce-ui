@@ -1,6 +1,6 @@
 <!-- <p class="fs-2 text-danger">account-login works with bootstrap!</p> -->
 
-<div class="container col-md-6 offset-md-3">
+<div class="container col-12 col-md-8 col-lg-6 mt-5 mb-5">
     <div class="card">
         <h4 class="card-header">Login</h4>
         <div class="card-body">
@@ -8,7 +8,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="email">Email</label>
                     <input id="email" type="email" formControlName="email" class="form-control" />
-                    <div *ngIf="formControls.email.errors && formControls.email.touched" class="text-danger">
+                    <div *ngIf="formControls.email.errors && formControls.email.touched" class="text-app-primary">
                         <div *ngIf="formControls.email.errors.required">Email is required</div>
                         <div *ngIf="formControls.email.errors.email">Must be a valid email address</div>
                     </div>
@@ -16,14 +16,15 @@
                 <div class="mb-3">
                     <label class="form-label" for="password">Password</label>
                     <input id="password" type="password" formControlName="password" class="form-control" />
-                    <div *ngIf="formControls.password.errors && formControls.password.touched" class="text-danger">
-                        <div *ngIf="formControls.password.errors.required" class="text-danger">
-                            Password is required
-                        </div>
+                    <div *ngIf="formControls.password.errors && formControls.password.touched" class="text-app-primary">
+                        <div *ngIf="formControls.password.errors.required">Password is required</div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center gap-4">
-                    <button [disabled]="loading || form.invalid" class="btn btn-primary">
+                    <button
+                        [disabled]="loading || form.invalid"
+                        class="btn btn-app-primary text-white rounded-0 px-4 py-2"
+                    >
                         <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
                         Login
                     </button>

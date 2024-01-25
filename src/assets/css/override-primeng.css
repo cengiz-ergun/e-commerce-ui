@@ -1,4 +1,10 @@
-/* PrimeNG Checks Start */
+:root{
+    --app-primary : #ff084e;
+    --app-secondary : #3a3a3a;
+    --app-tertiary: #b8b8b8;
+}
+
+/* --------- Checkbox Start --------- */
 div.widget-desc *.p-element {
     display: block !important;
     margin-bottom: 1rem;
@@ -6,28 +12,41 @@ div.widget-desc *.p-element {
 div.p-checkbox.p-component {
     margin-right: 0.5rem !important;
 }
-/* PrimeNG Checks Finish */
+.p-checkbox-box.p-highlight{
+    background-color: var(--app-secondary);
+    border-color: var(--app-secondary);
+}
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+    border-color: var(--app-secondary);
+  }
 
-/* PrimeNG th,td Start */
+.p-checkbox-box.p-focus{
+    outline: none;
+    box-shadow: var(--app-tertiary);
+    border-color: var(--app-secondary);
+}
+/* --------- Checkbox Finish --------- */
+
+/* --------- Table Start --------- */
 .p-datatable .p-datatable-thead > tr > th {
     text-align: center !important;
 }
-
 .p-datatable .p-datatable-tbody > tr > td {
     text-align: center !important;
     border: 1px solid #e5e7eb;
     border-width: 0 0 1px 0;
     padding: 1rem 1rem;
 }
-/* PrimeNG th,td Finish */
-
 .p-datatable .p-datatable-header{
     padding: 1.25rem;
 }
 .p-toolbar {
     padding: 1.25rem;
 }
+/* --------- Table Finish --------- */
 
+
+/* --------- Button Start --------- */
 .p-button{
     padding: 0.75rem 1.25rem;
 }
@@ -35,3 +54,46 @@ div.p-checkbox.p-component {
     border-radius: 50%;
     height: 3rem;
 }
+/* --------- Button Finish --------- */
+
+/* --------- Slider Start --------- */
+.p-slider{
+    max-width: 95% !important;
+}
+
+.p-slider .p-slider-range{
+    background-color: var(--app-secondary);
+}
+
+.p-slider .p-slider-handle{
+    border-color:var(--app-secondary) ;
+    transform: translateY(-40%);
+}
+
+.p-slider .p-slider-handle:hover{
+    background-color: var(--app-secondary);
+}
+
+.p-slider .p-slider-handle:focus{
+    box-shadow: unset;
+}
+/* --------- Slider Finish --------- */
+
+.p-icon-wrapper .p-icon{
+    display: none;
+}
+
+/* When open p-dialog, PrimeNG adds p-overflow-hidden class to body. To disable it:  */
+body{
+    overflow: unset !important;
+}
+
+a.p-accordion-header-link{
+    padding: 1rem 1rem;
+    margin: 0.5rem 0;
+    text-decoration: none;
+}
+div.p-accordion-content {
+    padding: 1rem;
+}
+

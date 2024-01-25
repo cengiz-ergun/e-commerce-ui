@@ -11,6 +11,7 @@ export interface Suit {
     currency: Currency;
     primaryInfo: string;
     secondaryInfo: string;
+    tertiaryInfo: string;
     sizes: Size[];
     colour: SuitColour;
     brand: Brand;

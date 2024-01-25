@@ -13,11 +13,12 @@ export const mockData: Suit[] = [
       currency: Currency.TL,
       primaryInfo: 'Slim Fit Suit',
       secondaryInfo: 'Perfect for formal occasions',
+      tertiaryInfo: "",
       sizes: [Size.XS, Size.M],
       colour: SuitColour.Black,
       brand: Brand.Limehaus,
       available: true,
-      imgPaths: ["assets/img/suits/id-1/img-1.jpg", 'assets/img/suits/id-1/img-2.jpg', 'assets/img/suits/id-1/img-3.jpg', 'assets/img/suits/id-1/img-4.jpg']
+      imgPaths: ["assets/img/suits/id-1/img-1.png"]
     },
     {
       id: 2,
@@ -26,11 +27,12 @@ export const mockData: Suit[] = [
       currency: Currency.TL,
       primaryInfo: 'Classic Red Suit',
       secondaryInfo: 'Ideal for special events',
+      tertiaryInfo: "",
       sizes: [Size.S, Size.L],
       colour: SuitColour.Red,
       brand: Brand.MarcyDarcy,
       available: false,
-      imgPaths: ["assets/img/suits/id-2/img-1.jpg", 'assets/img/suits/id-2/img-2.jpg', 'assets/img/suits/id-2/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-2/img-1.png"]
     },
     {
       id: 3,
@@ -39,11 +41,12 @@ export const mockData: Suit[] = [
       currency: Currency.TL,
       primaryInfo: 'Modern Blue Suit',
       secondaryInfo: 'Suitable for business meetings',
+      tertiaryInfo: "",
       sizes: [Size.XS, Size.XXL],
       colour: SuitColour.Blue,
       brand: Brand.Farah,
       available: true,
-      imgPaths: ["assets/img/suits/id-3/img-1.jpg", 'assets/img/suits/id-3/img-2.jpg', 'assets/img/suits/id-3/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-3/img-1.png"]
     },
     {
       id: 4,
@@ -52,24 +55,26 @@ export const mockData: Suit[] = [
       currency: Currency.TL,
       primaryInfo: 'Elegant White Suit',
       secondaryInfo: 'Perfect for weddings',
+      tertiaryInfo: "",
       sizes: [Size.L, Size.XL],
       colour: SuitColour.White,
       brand: Brand.MarcyDarcy,
       available: true,
-      imgPaths: ["assets/img/suits/id-4/img-1.jpg", 'assets/img/suits/id-4/img-2.jpg', 'assets/img/suits/id-4/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-4/img-1.png"]
     },
     {
       id: 5,
       gender: Gender.Men,
       price: 450,
       currency: Currency.TL,
-      primaryInfo: 'Casual Grey Suit',
+      primaryInfo: 'Casual Gray Suit',
       secondaryInfo: 'Great for casual events',
+      tertiaryInfo: "",
       sizes: [Size.S, Size.XXL],
       colour: SuitColour.Gray,
       brand: Brand.Limehaus,
       available: false,
-      imgPaths: ["assets/img/suits/id-5/img-1.jpg", 'assets/img/suits/id-5/img-2.jpg', 'assets/img/suits/id-5/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-5/img-1.png"]
     },
     {
       id: 6,
@@ -78,11 +83,12 @@ export const mockData: Suit[] = [
       currency: Currency.TL,
       primaryInfo: 'Chic Pink Suit',
       secondaryInfo: 'Adds a touch of elegance',
+      tertiaryInfo: "",
       sizes: [Size.XS, Size.XL],
       colour: SuitColour.Pink,
       brand: Brand.MarcyDarcy,
       available: true,
-      imgPaths: ["assets/img/suits/id-6/img-1.jpg", 'assets/img/suits/id-6/img-2.jpg', 'assets/img/suits/id-6/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-6/img-1.png"]
     },
     {
       id: 7,
@@ -91,11 +97,12 @@ export const mockData: Suit[] = [
       currency: Currency.TL,
       primaryInfo: 'Classic Blue Suit',
       secondaryInfo: 'Timeless and sophisticated',
+      tertiaryInfo: "",
       sizes: [Size.L, Size.XXL],
       colour: SuitColour.Blue,
       brand: Brand.Farah,
       available: true,
-      imgPaths: ["assets/img/suits/id-7/img-1.jpg", 'assets/img/suits/id-7/img-2.jpg', 'assets/img/suits/id-7/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-7/img-1.png"]
     },
     {
       id: 8,
@@ -104,36 +111,165 @@ export const mockData: Suit[] = [
       currency: Currency.TL,
       primaryInfo: 'Stylish Blue Suit',
       secondaryInfo: 'Versatile and elegant',
+      tertiaryInfo: "",
       sizes: [Size.S, Size.M],
       colour: SuitColour.Blue,
       brand: Brand.MarcyDarcy,
       available: false,
-      imgPaths: ["assets/img/suits/id-8/img-1.jpg", 'assets/img/suits/id-8/img-2.jpg', 'assets/img/suits/id-8/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-8/img-1.png"]
     },
     {
       id: 9,
       gender: Gender.Men,
       price: 1400,
       currency: Currency.TL,
-      primaryInfo: 'Sophisticated Beige Suit',
+      primaryInfo: 'Sophisticated Brown Suit',
       secondaryInfo: 'Ideal for upscale events',
+      tertiaryInfo: "",
       sizes: [Size.S, Size.XXL],
       colour: SuitColour.Brown,
       brand: Brand.Limehaus,
       available: true,
-      imgPaths: ["assets/img/suits/id-9/img-1.jpg", 'assets/img/suits/id-9/img-2.jpg', 'assets/img/suits/id-9/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-9/img-1.png"]
     },
     {
       id: 10,
       gender: Gender.Men,
       price: 1800,
       currency: Currency.TL,
-      primaryInfo: 'Casual red Suit',
+      primaryInfo: 'Casual brown Suit',
       secondaryInfo: 'A trendy and casual option',
+      tertiaryInfo: "",
       sizes: [Size.S, Size.L],
       colour: SuitColour.Brown,
       brand: Brand.MarcyDarcy,
       available: true,
-      imgPaths: ["assets/img/suits/id-10/img-1.jpg", 'assets/img/suits/id-10/img-2.jpg', 'assets/img/suits/id-10/img-3.jpg']
+      imgPaths: ["assets/img/suits/id-10/img-1.png"]
     },
+    {
+      id: 11,
+      gender: Gender.Women,
+      price: 170,
+      currency: Currency.TL,
+      primaryInfo: 'Slim Fit White Suit',
+      secondaryInfo: 'Perfect for formal occasions',
+      tertiaryInfo: "",
+      sizes: [Size.XS, Size.M],
+      colour: SuitColour.White,
+      brand: Brand.Limehaus,
+      available: true,
+      imgPaths: ["assets/img/suits/id-11/img-1.png"]
+    },
+    {
+      id: 12,
+      gender: Gender.Women,
+      price: 300,
+      currency: Currency.TL,
+      primaryInfo: 'Classic Yellow Suit',
+      secondaryInfo: 'Ideal for special events',
+      tertiaryInfo: "",
+      sizes: [Size.S, Size.L],
+      colour: SuitColour.Yellow,
+      brand: Brand.MarcyDarcy,
+      available: false,
+      imgPaths: ["assets/img/suits/id-12/img-1.png"]
+    },
+    {
+      id: 13,
+      gender: Gender.Women,
+      price: 250,
+      currency: Currency.TL,
+      primaryInfo: 'Modern Red Suit',
+      secondaryInfo: 'Suitable for business meetings',
+      tertiaryInfo: "",
+      sizes: [Size.XS, Size.XXL],
+      colour: SuitColour.Red,
+      brand: Brand.Farah,
+      available: true,
+      imgPaths: ["assets/img/suits/id-13/img-1.png"]
+    },
+    {
+      id: 14,
+      gender: Gender.Women,
+      price: 700,
+      currency: Currency.TL,
+      primaryInfo: 'Elegant White Suit',
+      secondaryInfo: 'Perfect for weddings',
+      tertiaryInfo: "",
+      sizes: [Size.L, Size.XL],
+      colour: SuitColour.White,
+      brand: Brand.MarcyDarcy,
+      available: true,
+      imgPaths: ["assets/img/suits/id-14/img-1.png"]
+    },
+    {
+      id: 15,
+      gender: Gender.Women,
+      price: 350,
+      currency: Currency.TL,
+      primaryInfo: 'Casual Gray Suit',
+      secondaryInfo: 'Great for casual events',
+      tertiaryInfo: "",
+      sizes: [Size.S, Size.XXL],
+      colour: SuitColour.Gray,
+      brand: Brand.Limehaus,
+      available: false,
+      imgPaths: ["assets/img/suits/id-15/img-1.png"]
+    },
+    {
+      id: 16,
+      gender: Gender.Women,
+      price: 500,
+      currency: Currency.TL,
+      primaryInfo: 'Chic Pink Suit',
+      secondaryInfo: 'Adds a touch of entertainment',
+      tertiaryInfo: "",
+      sizes: [Size.XS, Size.XL],
+      colour: SuitColour.Pink,
+      brand: Brand.MarcyDarcy,
+      available: true,
+      imgPaths: ["assets/img/suits/id-16/img-1.png"]
+    },
+    {
+      id: 17,
+      gender: Gender.Women,
+      price: 800,
+      currency: Currency.TL,
+      primaryInfo: 'Classic Black Suit',
+      secondaryInfo: 'Timeless and sophisticated',
+      tertiaryInfo: "",
+      sizes: [Size.L, Size.XXL],
+      colour: SuitColour.Black,
+      brand: Brand.Farah,
+      available: true,
+      imgPaths: ["assets/img/suits/id-17/img-1.png"]
+    },
+    {
+      id: 18,
+      gender: Gender.Women,
+      price: 1700,
+      currency: Currency.TL,
+      primaryInfo: 'Stylish Blue Suit',
+      secondaryInfo: 'Versatile and elegant',
+      tertiaryInfo: "",
+      sizes: [Size.S, Size.M],
+      colour: SuitColour.Blue,
+      brand: Brand.MarcyDarcy,
+      available: false,
+      imgPaths: ["assets/img/suits/id-18/img-1.png"]
+    },
+    {
+      id: 19,
+      gender: Gender.Women,
+      price: 1500,
+      currency: Currency.TL,
+      primaryInfo: 'Sophisticated Brown Suit',
+      secondaryInfo: 'Ideal for upscale events',
+      tertiaryInfo: "",
+      sizes: [Size.S, Size.XXL],
+      colour: SuitColour.Brown,
+      brand: Brand.Limehaus,
+      available: true,
+      imgPaths: ["assets/img/suits/id-19/img-1.png"]
+    }
   ];

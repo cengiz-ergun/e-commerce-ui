@@ -18,6 +18,18 @@ export class CartService {
         this.cart$ = this.cartSubject.asObservable();
     }
 
+    public get numberOfItemInTheBasket() {
+        return this.cartSubject.value.cartItems.reduce((accumulator, currentItem) => {
+            return accumulator + currentItem.quantity;
+        }, 0);
+    }
+
+    public get totalPriceOfTheBasket() {
+        return this.cartSubject.value.cartItems.reduce((accumulator, currentItem) => {
+            return accumulator + currentItem.price * currentItem.quantity;
+        }, 0);
+    }
+
     updateCart(cartItem: CartItem) {
         // is there already a cart item with same id and size in the cart
         const existingCartItem = this.cartSubject.value.cartItems.find(
@@ -42,6 +54,12 @@ export class CartService {
                 ],
             });
         }
+
+        localStorage.setItem(cartKey, JSON.stringify(this.cartSubject.value));
+    }
+
+    clearCart() {
+        this.cartSubject.next({ cartItems: [] });
 
         localStorage.setItem(cartKey, JSON.stringify(this.cartSubject.value));
     }

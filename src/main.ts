@@ -14,10 +14,8 @@ import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { mockBackendInterceptor } from "./app/_helpers/mock-backend";
 import { jwtInterceptor } from "@app/_helpers/jwt.interceptor";
 import { errorInterceptor } from "@app/_helpers/error.interceptor";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { importProvidersFrom } from "@angular/core";
-
-// bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));
+import { provideAnimations } from "@angular/platform-browser/animations";
+import { provideToastr } from "ngx-toastr";
 
 const scrollConfig: InMemoryScrollingOptions = {
     scrollPositionRestoration: "top",
@@ -39,8 +37,7 @@ bootstrapApplication(AppComponent, {
             ])
         ),
 
-        // When using standalone components add BrowserAnimationsModule while bootstraping the application.
-        // https://stackoverflow.com/a/76927884
-        importProvidersFrom([BrowserAnimationsModule]),
+        provideAnimations(),
+        provideToastr(),
     ],
 });

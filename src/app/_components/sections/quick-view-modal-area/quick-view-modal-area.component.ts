@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { CartItem } from "@app/_models/cart-item";
 import { Size } from "@app/_models/enums/size";
 import { Suit } from "@app/_models/suit";
+import { AlertService } from "@app/_services/alert.service";
 import { CartService } from "@app/_services/cart.service";
 import { QuickViewService } from "@app/_services/quick-view.service";
 import { RadioButtonModule } from "primeng/radiobutton";
@@ -34,7 +35,8 @@ export class QuickViewModalAreaComponent implements OnInit {
 
     constructor(
         private quickViewService: QuickViewService,
-        private cartService: CartService
+        private cartService: CartService,
+        private alertService: AlertService
     ) {}
 
     ngOnInit(): void {
@@ -53,6 +55,7 @@ export class QuickViewModalAreaComponent implements OnInit {
     }
 
     addToTheCart() {
+        this.alertService.clear();
         const cartItem: CartItem = {
             id: this.suit!.id,
             size: this.selectedSize!,
@@ -61,5 +64,7 @@ export class QuickViewModalAreaComponent implements OnInit {
             firstImgPath: this.suit!.imgPaths[0],
         };
         this.cartService.updateCart(cartItem);
+        // TODO:return a response from service to indicate whether the action is succesfully completed or not.
+        this.alertService.success("Your card is updated succesfully.");
     }
 }

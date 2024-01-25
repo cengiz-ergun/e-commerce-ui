@@ -3,9 +3,33 @@
         <div class="row">
             <p-table *ngIf="cart" [value]="cartItems" styleClass="p-datatable-striped">
                 <ng-template pTemplate="caption">
-                    <div class="d-flex align-items-center justify-content-between">
-                        Products
-                        <p-button (click)="refreshCart()" icon="pi pi-refresh"></p-button>
+                    <div class="d-flex align-items-center">
+                        <span class="flex-grow-1 gap-3">Products</span>
+                        <p-button (click)="showDialog()" icon="pi pi-trash"></p-button>
+                        <p-dialog
+                            [(visible)]="visible"
+                            [modal]="true"
+                            [style]="{ width: '50rem' }"
+                            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+                        >
+                            <p class="ps-3">Do you want to clear all cart items?</p>
+                            <ng-template pTemplate="footer">
+                                <p-button
+                                    [style]="{ margin: '0.5rem' }"
+                                    (click)="clearCart()"
+                                    label="Yes"
+                                    pAutoFocus
+                                    [autofocus]="true"
+                                ></p-button>
+                                <p-button
+                                    [style]="{ margin: '0.5rem' }"
+                                    (click)="visible = false"
+                                    label="No"
+                                    pAutoFocus
+                                    [autofocus]="true"
+                                ></p-button>
+                            </ng-template>
+                        </p-dialog>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -28,79 +52,36 @@
                                 class="shadow p-3"
                             />
                         </td>
-                        <td>{{ cartItem.price }}</td>
+                        <td>{{ cartItem.price | currency: "₺" }}</td>
                         <td>{{ cartItem.size }}</td>
                         <td>{{ cartItem.quantity }}</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">
                     <div class="d-flex align-items-center justify-content-between">
-                        In total there are {{ cartItems ? cartItems.length : 0 }} products.
+                        In total there are {{ cartItems ? quantity : 0 }} products.
                     </div>
                 </ng-template>
             </p-table>
         </div>
 
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="coupon-code-area mt-70">
-                    <div class="cart-page-heading">
-                        <h5>Cupon code</h5>
-                        <p>Enter your cupone code</p>
-                    </div>
-                    <form action="#">
-                        <input type="search" name="search" placeholder="#569ab15" />
-                        <button type="submit">Apply</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="shipping-method-area mt-70">
-                    <div class="cart-page-heading">
-                        <h5>Shipping method</h5>
-                        <p>Select the one you want</p>
-                    </div>
-
-                    <div class="custom-control custom-radio mb-30">
-                        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" />
-                        <label
-                            class="custom-control-label d-flex align-items-center justify-content-between"
-                            for="customRadio1"
-                            ><span>Next day delivery</span><span>$4.99</span></label
-                        >
-                    </div>
-
-                    <div class="custom-control custom-radio mb-30">
-                        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" />
-                        <label
-                            class="custom-control-label d-flex align-items-center justify-content-between"
-                            for="customRadio2"
-                            ><span>Standard delivery</span><span>$1.99</span></label
-                        >
-                    </div>
-
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" />
-                        <label
-                            class="custom-control-label d-flex align-items-center justify-content-between"
-                            for="customRadio3"
-                            ><span>Personal Pickup</span><span>Free</span></label
-                        >
-                    </div>
-                </div>
-            </div>
             <div class="col-12 col-lg-4">
                 <div class="cart-total-area mt-70">
                     <div class="cart-page-heading">
                         <h5>Cart total</h5>
-                        <p>Final info</p>
                     </div>
 
                     <ul class="cart-total-chart">
-                        <li><span>Subtotal</span> <span>$59.90</span></li>
+                        <li>
+                            <span>Subtotal</span> <span>{{ totalPrice | currency: "₺" }}</span>
+                        </li>
                         <li><span>Shipping</span> <span>Free</span></li>
                         <li>
-                            <span><strong>Total</strong></span> <span><strong>$59.90</strong></span>
+                            <span><strong>Total</strong></span>
+                            <span
+                                ><strong>{{ totalPrice | currency: "₺" }}</strong></span
+                            >
                         </li>
                     </ul>
                     <a routerLink="/checkout" class="btn karl-btn mt-30 btn-app-secondary">Proceed to checkout</a>

@@ -6,6 +6,7 @@ import { FilterByPriceRangeComponent } from "@app/_components/filter-by-price-ra
 import { FilterBySizeComponent } from "@app/_components/filter-by-size/filter-by-size.component";
 import { GaleryItemsComponent } from "@app/_components/galery-items/galery-items.component";
 import { QuickViewModalAreaComponent } from "@app/_components/sections/quick-view-modal-area/quick-view-modal-area.component";
+import { AccordionModule } from "primeng/accordion";
 
 @Component({
     selector: "app-shop",
@@ -19,6 +20,7 @@ import { QuickViewModalAreaComponent } from "@app/_components/sections/quick-vie
         FilterBySizeComponent,
         FilterApplyComponent,
         QuickViewModalAreaComponent,
+        AccordionModule,
     ],
     templateUrl: "./shop.component.html",
     styleUrl: "./shop.component.scss",

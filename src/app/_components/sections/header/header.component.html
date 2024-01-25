@@ -13,47 +13,12 @@
                             <a href="#"><img src="../../../assets/img/core-img/logo.png" alt="" /></a>
                         </div>
                         <!-- Cart & Menu Area -->
-                        <div class="header-cart-menu d-flex align-items-center ms-auto gap-3">
+                        <div class="header-cart-menu d-flex flex-row align-items-center ms-auto gap-3">
                             <!-- Cart Area -->
                             <div class="cart">
-                                <a href="#" id="header-cart-btn" target="_blank"
-                                    ><span class="cart_quantity">{{ quantity }}</span> <i class="ti-bag"></i> Your Bag
-                                    price</a
-                                >
-                                <!-- Cart List Area Start -->
-                                <ul class="cart-list">
-                                    <li>
-                                        <a href="#" class="image"
-                                            ><img
-                                                src="../../../assets/img/product-img/product-10.jpg"
-                                                class="cart-thumb"
-                                                alt=""
-                                        /></a>
-                                        <div class="cart-item-desc">
-                                            <h6><a href="#">Women's Fashion</a></h6>
-                                            <p>1x - <span class="price">$10</span></p>
-                                        </div>
-                                        <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="image"
-                                            ><img
-                                                src="../../../assets/img/product-img/product-11.jpg"
-                                                class="cart-thumb"
-                                                alt=""
-                                        /></a>
-                                        <div class="cart-item-desc">
-                                            <h6><a href="#">Women's Fashion</a></h6>
-                                            <p>1x - <span class="price">$10</span></p>
-                                        </div>
-                                        <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
-                                    </li>
-                                    <li class="total">
-                                        <span class="pull-right">Total: $20.00</span>
-                                        <a href="cart.html" class="btn btn-sm btn-cart">Cart</a>
-                                        <a href="checkout-1.html" class="btn btn-sm btn-checkout">Checkout</a>
-                                    </li>
-                                </ul>
+                                <a routerLink="/cart" id="header-cart-btn" target="_blank"
+                                    ><span class="cart_quantity">{{ quantity }}</span> <i class="ti-bag"></i
+                                ></a>
                             </div>
                             <div class="header-right-side-menu">
                                 <!-- <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a> -->
@@ -126,7 +91,7 @@
                                 aria-expanded="false"
                                 aria-label="Toggle navigation"
                             >
-                                <span class="navbar-toggler-icon"><i class="ti-menu"></i></span>
+                                <span class="navbar-toggler-icon"></span>
                             </button>
 
                             <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
@@ -156,16 +121,28 @@
                                         <a class="nav-link" href="#"> Shoes</a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="#">Contact</a></li> -->
-                                    <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
-                                    <li class="nav-item"><a class="nav-link" routerLink="/shop">Shop</a></li>
-                                    <li class="nav-item"><a class="nav-link" routerLink="/cart">Cart</a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" routerLink="/home" routerLinkActive="app-active-link"
+                                            >Home</a
+                                        >
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" routerLink="/shop" routerLinkActive="app-active-link"
+                                            >Shop</a
+                                        >
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" routerLink="/cart" routerLinkActive="app-active-link"
+                                            >Cart</a
+                                        >
+                                    </li>
                                 </ul>
                             </div>
                         </nav>
                     </div>
                     <!-- Help Line -->
-                    <div class="help-line">
-                        <a href="tel:+346573556778"><i class="ti-headphone-alt"></i> +34 657 3556 778</a>
+                    <div class="help-line text-white">
+                        <a href="tel:+346573556778"><i class="ti-headphone-alt"></i> +90 544 XXX XX XX</a>
                     </div>
                 </div>
             </div>
