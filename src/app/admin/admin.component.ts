@@ -12,10 +12,17 @@ import { RadioButtonModule } from "primeng/radiobutton";
 import { InputNumberModule } from "primeng/inputnumber";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { FormsModule } from "@angular/forms";
-import { Product } from "./domain/product";
-import { ProductService } from "./service/productservice";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { CommonModule } from "@angular/common";
+import { AccountService } from "@app/_services/account.service";
+import { first } from "rxjs";
+import { Suit } from "@app/_models/suit";
+import { Gender } from "@app/_models/enums/gender";
+import { Currency } from "@app/_models/enums/currency";
+import { SuitColour } from "@app/_models/enums/suit-colour";
+import { Brand } from "@app/_models/enums/brand";
+import { Size } from "@app/_models/enums/size";
+import { CheckboxModule } from "primeng/checkbox";
 
 @Component({
     selector: "app-admin",
@@ -35,35 +42,73 @@ import { CommonModule } from "@angular/common";
         ConfirmDialogModule,
         FormsModule,
         CommonModule,
+        CheckboxModule,
     ],
     templateUrl: "./admin.component.html",
     styleUrl: "./admin.component.scss",
-    providers: [MessageService, ConfirmationService, ProductService],
+    providers: [MessageService, ConfirmationService],
     animations: [],
 })
 export class AdminComponent implements OnInit {
     productDialog = false;
-
-    products!: Product[];
-
-    product!: Product;
-
-    selectedProducts!: Product[] | null;
-
+    products: Suit[] = [];
+    product!: Suit;
+    initializeProduct: Suit = {
+        gender: Gender.Men,
+        price: 0,
+        currency: Currency.TL,
+        primaryInfo: "",
+        secondaryInfo: "",
+        tertiaryInfo: "",
+        sizes: [],
+        colour: SuitColour.Black,
+        brand: Brand.Farah,
+        available: false,
+        imgPaths: [],
+        stock: 0,
+    };
+    selectedProducts!: Suit[] | null;
     submitted = false;
 
+    genders = Object.keys(Gender).filter((key) => isNaN(Number(key)));
+    colours = Object.keys(SuitColour).filter((key) => isNaN(Number(key)));
+    sizes = Object.keys(Size).filter((key) => isNaN(Number(key)));
+    brands = Object.keys(Brand).filter((key) => isNaN(Number(key)));
+
     constructor(
-        private productService: ProductService,
         private messageService: MessageService,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private accountService: AccountService
     ) {}
 
+    stringToGender(gender: string): Gender {
+        return Gender[gender as keyof typeof Gender];
+    }
+    stringToColour(colour: string): SuitColour {
+        return SuitColour[colour as keyof typeof SuitColour];
+    }
+    stringToSize(size: string): Size {
+        return Size[size as keyof typeof Size];
+    }
+    stringToBrand(brand: string): Brand {
+        return Brand[brand as keyof typeof Brand];
+    }
+
+    onSizeSelectionChange(size: string) {
+        this.product = { ...this.product, sizes: [...this.product.sizes, Size[size as keyof typeof Size]] };
+    }
+
     ngOnInit() {
-        this.productService.getProducts().then((data) => (this.products = data));
+        this.accountService
+            .getAllSuits()
+            .pipe(first())
+            .subscribe((suits) => {
+                this.products = suits;
+            });
     }
 
     openNew() {
-        this.product = {};
+        this.product = { ...this.initializeProduct };
         this.submitted = false;
         this.productDialog = true;
     }
@@ -86,19 +131,18 @@ export class AdminComponent implements OnInit {
         });
     }
 
-    editProduct(product: Product) {
+    editProduct(product: Suit) {
         this.product = { ...product };
         this.productDialog = true;
     }
 
-    deleteProduct(product: Product) {
+    deleteProduct(product: Suit) {
         this.confirmationService.confirm({
-            message: "Are you sure you want to delete " + product.name + "?",
+            message: "Are you sure you want to delete id with " + product.id + "?",
             header: "Confirm",
             icon: "pi pi-exclamation-triangle",
             accept: () => {
                 this.products = this.products.filter((val) => val.id !== product.id);
-                this.product = {};
                 this.messageService.add({
                     severity: "success",
                     summary: "Successful",
@@ -117,7 +161,7 @@ export class AdminComponent implements OnInit {
     saveProduct() {
         this.submitted = true;
 
-        if (this.product.name?.trim()) {
+        if (this.product.primaryInfo?.trim()) {
             if (this.product.id) {
                 this.products[this.findIndexById(this.product.id)] = this.product;
                 this.messageService.add({
@@ -127,41 +171,50 @@ export class AdminComponent implements OnInit {
                     life: 3000,
                 });
             } else {
-                this.product.id = this.createId();
-                this.product.image = "product-placeholder.svg";
-                this.products.push(this.product);
-                this.messageService.add({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: "Product Created",
-                    life: 3000,
-                });
+                this.accountService
+                    .postSuit(this.product)
+                    .pipe(first())
+                    .subscribe({
+                        next: (message) => {
+                            this.accountService
+                                .getAllSuits()
+                                .pipe(first())
+                                .subscribe((suits) => {
+                                    this.products = suits;
+                                    this.messageService.add({
+                                        severity: "success",
+                                        summary: "Successful",
+                                        detail: message.toString(),
+                                        life: 3000,
+                                    });
+                                });
+                        },
+                        error: (error) => {
+                            this.messageService.add({
+                                severity: "success",
+                                summary: "Successful",
+                                detail: error,
+                                life: 3000,
+                            });
+                        },
+                    });
             }
 
             this.products = [...this.products];
             this.productDialog = false;
-            this.product = {};
+            this.product = { ...this.initializeProduct };
         }
     }
 
-    findIndexById(id: string): number {
+    findIndexById(id: number): number {
         let index = -1;
         for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === id) {
+            if (this.products[i].id === Number(id)) {
                 index = i;
                 break;
             }
         }
 
         return index;
-    }
-
-    createId(): string {
-        let id = "";
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return id;
     }
 }

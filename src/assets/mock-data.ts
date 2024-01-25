@@ -18,7 +18,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Black,
       brand: Brand.Limehaus,
       available: true,
-      imgPaths: ["assets/img/suits/id-1/img-1.png"]
+      imgPaths: ["assets/img/suits/id-1/img-1.png"],
+      stock: 100
     },
     {
       id: 2,
@@ -32,7 +33,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Red,
       brand: Brand.MarcyDarcy,
       available: false,
-      imgPaths: ["assets/img/suits/id-2/img-1.png"]
+      imgPaths: ["assets/img/suits/id-2/img-1.png"],
+      stock: 100
     },
     {
       id: 3,
@@ -46,7 +48,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Blue,
       brand: Brand.Farah,
       available: true,
-      imgPaths: ["assets/img/suits/id-3/img-1.png"]
+      imgPaths: ["assets/img/suits/id-3/img-1.png"],
+      stock: 100
     },
     {
       id: 4,
@@ -60,7 +63,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.White,
       brand: Brand.MarcyDarcy,
       available: true,
-      imgPaths: ["assets/img/suits/id-4/img-1.png"]
+      imgPaths: ["assets/img/suits/id-4/img-1.png"],
+      stock: 100
     },
     {
       id: 5,
@@ -74,7 +78,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Gray,
       brand: Brand.Limehaus,
       available: false,
-      imgPaths: ["assets/img/suits/id-5/img-1.png"]
+      imgPaths: ["assets/img/suits/id-5/img-1.png"],
+      stock: 100
     },
     {
       id: 6,
@@ -88,7 +93,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Pink,
       brand: Brand.MarcyDarcy,
       available: true,
-      imgPaths: ["assets/img/suits/id-6/img-1.png"]
+      imgPaths: ["assets/img/suits/id-6/img-1.png"],
+      stock: 100
     },
     {
       id: 7,
@@ -102,7 +108,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Blue,
       brand: Brand.Farah,
       available: true,
-      imgPaths: ["assets/img/suits/id-7/img-1.png"]
+      imgPaths: ["assets/img/suits/id-7/img-1.png"],
+      stock: 100
     },
     {
       id: 8,
@@ -116,7 +123,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Blue,
       brand: Brand.MarcyDarcy,
       available: false,
-      imgPaths: ["assets/img/suits/id-8/img-1.png"]
+      imgPaths: ["assets/img/suits/id-8/img-1.png"],
+      stock: 100
     },
     {
       id: 9,
@@ -130,7 +138,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Brown,
       brand: Brand.Limehaus,
       available: true,
-      imgPaths: ["assets/img/suits/id-9/img-1.png"]
+      imgPaths: ["assets/img/suits/id-9/img-1.png"],
+      stock: 100
     },
     {
       id: 10,
@@ -144,7 +153,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Brown,
       brand: Brand.MarcyDarcy,
       available: true,
-      imgPaths: ["assets/img/suits/id-10/img-1.png"]
+      imgPaths: ["assets/img/suits/id-10/img-1.png"],
+      stock: 100
     },
     {
       id: 11,
@@ -158,7 +168,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.White,
       brand: Brand.Limehaus,
       available: true,
-      imgPaths: ["assets/img/suits/id-11/img-1.png"]
+      imgPaths: ["assets/img/suits/id-11/img-1.png"],
+      stock: 100
     },
     {
       id: 12,
@@ -172,7 +183,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Yellow,
       brand: Brand.MarcyDarcy,
       available: false,
-      imgPaths: ["assets/img/suits/id-12/img-1.png"]
+      imgPaths: ["assets/img/suits/id-12/img-1.png"],
+      stock: 100
     },
     {
       id: 13,
@@ -186,7 +198,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Red,
       brand: Brand.Farah,
       available: true,
-      imgPaths: ["assets/img/suits/id-13/img-1.png"]
+      imgPaths: ["assets/img/suits/id-13/img-1.png"],
+      stock: 100
     },
     {
       id: 14,
@@ -200,7 +213,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.White,
       brand: Brand.MarcyDarcy,
       available: true,
-      imgPaths: ["assets/img/suits/id-14/img-1.png"]
+      imgPaths: ["assets/img/suits/id-14/img-1.png"],
+      stock: 100
     },
     {
       id: 15,
@@ -214,7 +228,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Gray,
       brand: Brand.Limehaus,
       available: false,
-      imgPaths: ["assets/img/suits/id-15/img-1.png"]
+      imgPaths: ["assets/img/suits/id-15/img-1.png"],
+      stock: 100
     },
     {
       id: 16,
@@ -228,7 +243,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Pink,
       brand: Brand.MarcyDarcy,
       available: true,
-      imgPaths: ["assets/img/suits/id-16/img-1.png"]
+      imgPaths: ["assets/img/suits/id-16/img-1.png"],
+      stock: 100
     },
     {
       id: 17,
@@ -242,7 +258,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Black,
       brand: Brand.Farah,
       available: true,
-      imgPaths: ["assets/img/suits/id-17/img-1.png"]
+      imgPaths: ["assets/img/suits/id-17/img-1.png"],
+      stock: 100
     },
     {
       id: 18,
@@ -256,7 +273,8 @@ export const mockData: Suit[] = [
       colour: SuitColour.Blue,
       brand: Brand.MarcyDarcy,
       available: false,
-      imgPaths: ["assets/img/suits/id-18/img-1.png"]
+      imgPaths: ["assets/img/suits/id-18/img-1.png"],
+      stock: 100
     },
     {
       id: 19,
@@ -270,6 +288,7 @@ export const mockData: Suit[] = [
       colour: SuitColour.Brown,
       brand: Brand.Limehaus,
       available: true,
-      imgPaths: ["assets/img/suits/id-19/img-1.png"]
+      imgPaths: ["assets/img/suits/id-19/img-1.png"],
+      stock: 100
     }
   ];

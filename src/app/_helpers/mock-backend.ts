@@ -9,11 +9,10 @@ import { Role } from "@app/_models/enums/role";
 const usersKey = "e-commerce-users";
 const users: User[] = JSON.parse(localStorage.getItem(usersKey)!) || [];
 
-const suits: Suit[] = mockData;
+let suits: Suit[] = mockData;
 
 export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHandlerFn) {
-    // headers
-    const { url, method, body } = request;
+    const { url, method, headers, body } = request;
 
     return handleRoute();
 
@@ -25,6 +24,8 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
                 return register();
             case url.endsWith("/suits") && method === "GET":
                 return getSuits();
+            case url.endsWith("/admin") && method === "POST":
+                return postSuit();
             default:
                 // pass through any requests not handled above
                 return next(request);
@@ -70,18 +71,53 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
         return ok(suits, 3000);
     }
 
+    function postSuit() {
+        if (!isAdminLoggedIn()) return unauthorized();
+
+        const product: Suit = body;
+        product.id = Number(createId());
+        suits = [...suits, product];
+        return created("New product is created.");
+        // return error("intentionally error");
+    }
+
     // helper functions
 
     function ok(body?: any, delaysInMiliseconds = 500) {
         return of(new HttpResponse({ status: 200, body })).pipe(delay(delaysInMiliseconds)); // delay observable to simulate server api call
     }
 
+    function created(body?: any, delaysInMiliseconds = 500) {
+        return of(new HttpResponse({ status: 201, body })).pipe(delay(delaysInMiliseconds)); // delay observable to simulate server api call
+    }
+
     function error(message: string) {
         return throwError(() => ({ error: { message } })).pipe(materialize(), delay(500), dematerialize());
+    }
+
+    function unauthorized() {
+        return throwError(() => ({ status: 401, error: { message: "Unauthorized" } })).pipe(
+            materialize(),
+            delay(500),
+            dematerialize()
+        );
     }
 
     function basicDetails(user: any) {
         const { id, email, firstName, lastName } = user;
         return { id, email, firstName, lastName };
+    }
+
+    function isAdminLoggedIn() {
+        return headers.get("Authorization") === "Bearer fake-admin-jwt-token";
+    }
+
+    function createId(): string {
+        let id = "";
+        const chars = "0123456789";
+        for (let i = 0; i < 5; i++) {
+            id += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return id;
     }
 }

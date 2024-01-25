@@ -1,6 +1,3 @@
-<!-- <p class="fs-1 text-success">admin works! with bootstrap</p> -->
-<!-- <router-outlet></router-outlet> -->
-
 <div class="admin-card">
     <p-toast></p-toast>
     <p-toolbar styleClass="mb-4 gap-2">
@@ -30,7 +27,7 @@
         [value]="products"
         [rows]="10"
         [paginator]="true"
-        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        [globalFilterFields]="['primaryInfo']"
         [tableStyle]="{ 'min-width': '75rem' }"
         [(selection)]="selectedProducts"
         [rowHover]="true"
@@ -40,7 +37,7 @@
     >
         <ng-template pTemplate="caption">
             <div class="d-flex align-items-center justify-content-between">
-                <h5 class="m-0">Manage Products</h5>
+                <h5 class="m-0">Manage Suits</h5>
                 <span class="p-input-icon-left">
                     <input
                         pInputText
@@ -56,52 +53,45 @@
                 <th style="width: 4rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="name" style="min-width: 15rem">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="primaryInfo" style="min-width: 15rem">
+                    Primary Info <p-sortIcon field="primaryInfo"></p-sortIcon>
+                </th>
                 <th>Image</th>
                 <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-                <th pSortableColumn="category" style="min-width: 10rem">
-                    Category <p-sortIcon field="category"></p-sortIcon>
-                </th>
                 <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-suit>
             <tr>
                 <td>
-                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    <p-tableCheckbox [value]="suit"></p-tableCheckbox>
                 </td>
-                <td>{{ product.name }}</td>
+                <td>{{ suit.primaryInfo }}</td>
                 <td>
-                    <img
-                        [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
-                        [alt]="product.name"
-                        width="50"
-                        class="shadow-4"
-                    />
+                    <img [src]="suit.imgPaths[0]" [alt]="'img' + suit.id" width="50" class="shadow-4" />
                 </td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.category }}</td>
+                <td>{{ suit.price }}</td>
                 <td>
                     <button
                         pButton
                         pRipple
                         icon="pi pi-pencil"
                         class="p-button-rounded p-button-success me-2"
-                        (click)="editProduct(product)"
+                        (click)="editProduct(suit)"
                     ></button>
                     <button
                         pButton
                         pRipple
                         icon="pi pi-trash"
                         class="p-button-rounded p-button-warning"
-                        (click)="deleteProduct(product)"
+                        (click)="deleteProduct(suit)"
                     ></button>
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-                In total there are {{ products ? products.length : 0 }} products.
+                In total there are {{ products ? products.length : 0 }} suits.
             </div>
         </ng-template>
     </p-table>
@@ -115,66 +105,96 @@
 >
     <ng-template pTemplate="content">
         <img
-            [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
-            [alt]="product.image"
+            [src]="product.imgPaths[0]"
+            [alt]="product.imgPaths[0]"
             class="block m-auto pb-3"
-            *ngIf="product.image"
+            *ngIf="product.imgPaths[0]"
         />
         <div class="field">
-            <label for="name">Name</label>
-            <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
-            <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small>
+            <label for="primaryInfo">Primary Info</label>
+            <input id="primaryInfo" type="text" pInputText [(ngModel)]="product.primaryInfo" required autofocus />
+            <small class="p-error" *ngIf="submitted && !product.primaryInfo">Primary Info is required.</small>
         </div>
         <div class="field">
-            <label for="description">Description</label>
+            <label for="secondaryInfo">Secondary Info</label>
             <textarea
-                id="description"
+                id="secondaryInfo"
                 pInputTextarea
-                [(ngModel)]="product.description"
-                required
+                [(ngModel)]="product.secondaryInfo"
                 rows="3"
                 cols="20"
+                required
+            ></textarea>
+        </div>
+        <div class="field">
+            <label for="tertiaryInfo">Tertiary Info</label>
+            <textarea
+                id="tertiaryInfo"
+                pInputTextarea
+                [(ngModel)]="product.tertiaryInfo"
+                rows="3"
+                cols="20"
+                required
             ></textarea>
         </div>
 
         <div class="field">
-            <label class="mb-3">Category</label>
+            <label class="mb-3">Gender</label>
             <div class="formgrid grid">
-                <div class="field-radiobutton col-6">
+                <div *ngFor="let gender of genders" class="field-radiobutton col-6">
                     <p-radioButton
-                        id="category1"
-                        name="category"
-                        value="Accessories"
-                        [(ngModel)]="product.category"
+                        [id]="gender"
+                        [name]="gender"
+                        [value]="stringToGender(gender)"
+                        [(ngModel)]="product.gender"
                     ></p-radioButton>
-                    <label for="category1">Accessories</label>
+                    <label [for]="gender">{{ gender }}</label>
                 </div>
-                <div class="field-radiobutton col-6">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="mb-3">Colour</label>
+            <div class="formgrid grid">
+                <div *ngFor="let colour of colours" class="field-radiobutton col-6">
                     <p-radioButton
-                        id="category2"
-                        name="category"
-                        value="Clothing"
-                        [(ngModel)]="product.category"
+                        [id]="colour"
+                        [name]="colour"
+                        [value]="stringToColour(colour)"
+                        [(ngModel)]="product.colour"
                     ></p-radioButton>
-                    <label for="category2">Clothing</label>
+                    <label [for]="colour">{{ colour }}</label>
                 </div>
-                <div class="field-radiobutton col-6">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="mb-3">Brand</label>
+            <div class="formgrid grid">
+                <div *ngFor="let brand of brands" class="field-radiobutton col-6">
                     <p-radioButton
-                        id="category3"
-                        name="category"
-                        value="Electronics"
-                        [(ngModel)]="product.category"
+                        [id]="brand"
+                        [name]="brand"
+                        [value]="stringToBrand(brand)"
+                        [(ngModel)]="product.brand"
                     ></p-radioButton>
-                    <label for="category3">Electronics</label>
+                    <label [for]="brand">{{ brand }}</label>
                 </div>
-                <div class="field-radiobutton col-6">
-                    <p-radioButton
-                        id="category4"
-                        name="category"
-                        value="Fitness"
-                        [(ngModel)]="product.category"
-                    ></p-radioButton>
-                    <label for="category4">Fitness</label>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="mb-3">Size</label>
+            <div class="formgrid grid">
+                <div *ngFor="let size of sizes" class="field-radiobutton col-6">
+                    <p-checkbox
+                        [id]="size"
+                        [name]="size"
+                        [value]="stringToSize(size)"
+                        [(ngModel)]="product.sizes"
+                        (ngModelChange)="onSizeSelectionChange(size)"
+                    ></p-checkbox>
+                    <label [for]="size">{{ size }}</label>
                 </div>
             </div>
         </div>
@@ -186,13 +206,13 @@
                     id="price"
                     [(ngModel)]="product.price"
                     mode="currency"
-                    currency="USD"
+                    currency="TRY"
                     locale="en-US"
                 ></p-inputNumber>
             </div>
             <div class="field col">
-                <label for="quantity">Quantity</label>
-                <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+                <label for="stock">Stock</label>
+                <p-inputNumber id="stock" [(ngModel)]="product.stock"></p-inputNumber>
             </div>
         </div>
     </ng-template>

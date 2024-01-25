@@ -5,7 +5,7 @@ import { Size } from "./enums/size";
 import { SuitColour } from "./enums/suit-colour";
 
 export interface Suit {
-    id: number;
+    id?: number;
     gender: Gender;
     price: number;
     currency: Currency;
@@ -17,4 +17,5 @@ export interface Suit {
     brand: Brand;
     available: boolean;
     imgPaths: string[];
+    stock: number;
 }

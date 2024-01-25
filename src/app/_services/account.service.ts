@@ -34,6 +34,10 @@ export class AccountService {
         );
     }
 
+    register(user: User) {
+        return this.http.post(`${environment.apiUrl}/users/register`, user);
+    }
+
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem("user");
@@ -41,11 +45,15 @@ export class AccountService {
         this.router.navigate(["/login"]);
     }
 
-    register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
-    }
-
     getAllSuits() {
         return this.http.get<Suit[]>(`${environment.apiUrl}/suits`);
     }
+
+    postSuit(suit: Suit) {
+        return this.http.post(`${environment.apiUrl}/admin`, suit);
+    }
+
+    // deleteSuit(id: number) {}
+
+    // updateSuit(suit: Suit) {}
 }
