@@ -26,6 +26,12 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
                 return getSuits();
             case url.endsWith("/admin") && method === "POST":
                 return postSuit();
+            case url.match(/\/admin\/\d+$/) && method === "DELETE":
+                return deleteSuit();
+            case url.match(/\/admin\/\d+$/) && method === "PUT":
+                return updateSuit();
+            case url.match("/admin/multiple-suits-delete") && method === "POST":
+                return deleteSuits();
             default:
                 // pass through any requests not handled above
                 return next(request);
@@ -78,7 +84,53 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
         product.id = Number(createId());
         suits = [...suits, product];
         return created("New product is created.");
-        // return error("intentionally error");
+    }
+
+    function deleteSuit() {
+        if (!isAdminLoggedIn()) return unauthorized();
+
+        const lengthBefore = suits.length;
+        suits = suits.filter((suit) => suit.id !== idFromUrl());
+        const lengthAfter = suits.length;
+        const diff = lengthBefore - lengthAfter;
+        if (diff === 1) {
+            return ok("deleted succesfully.");
+        } else {
+            return error("some things are wrong.");
+        }
+    }
+
+    function updateSuit() {
+        if (!isAdminLoggedIn()) return unauthorized();
+
+        const id = idFromUrl();
+        const product: Suit = body;
+        if (product.id! !== id) {
+            return error("id's are not same.");
+        }
+
+        const currentProduct = suits.find((suit) => suit.id === id);
+        if (!currentProduct) {
+            return error(`There is not any suit with the id: ${id}`);
+        } else {
+            suits = suits.map((suit) => (suit.id === id ? product : suit));
+            return ok("Product is succesfully updated.");
+        }
+    }
+
+    function deleteSuits() {
+        if (!isAdminLoggedIn()) return unauthorized();
+
+        const ids: number[] = body.ids;
+        const lengthBefore = suits.length;
+        suits = suits.filter((suit) => !ids.includes(suit.id!));
+        const lengthAfter = suits.length;
+        const diff = lengthBefore - lengthAfter;
+        if (diff === ids.length) {
+            return ok("items deleted succesfully.");
+        } else {
+            return error("some things are wrong.");
+        }
     }
 
     // helper functions
@@ -110,6 +162,11 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
 
     function isAdminLoggedIn() {
         return headers.get("Authorization") === "Bearer fake-admin-jwt-token";
+    }
+
+    function idFromUrl() {
+        const urlParts = url.split("/");
+        return parseInt(urlParts[urlParts.length - 1]);
     }
 
     function createId(): string {

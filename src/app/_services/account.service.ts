@@ -53,7 +53,15 @@ export class AccountService {
         return this.http.post(`${environment.apiUrl}/admin`, suit);
     }
 
-    // deleteSuit(id: number) {}
+    deleteSuit(id: number) {
+        return this.http.delete(`${environment.apiUrl}/admin/${id}`);
+    }
 
-    // updateSuit(suit: Suit) {}
+    deleteSuits(ids: number[]) {
+        return this.http.post(`${environment.apiUrl}/admin/multiple-suits-delete`, { ids: ids });
+    }
+
+    updateSuit(id: number, suit: Suit) {
+        return this.http.put(`${environment.apiUrl}/admin/${id}`, suit);
+    }
 }

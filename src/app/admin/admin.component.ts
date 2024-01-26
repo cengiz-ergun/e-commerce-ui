@@ -119,14 +119,35 @@ export class AdminComponent implements OnInit {
             header: "Confirm",
             icon: "pi pi-exclamation-triangle",
             accept: () => {
-                this.products = this.products.filter((val) => !this.selectedProducts?.includes(val));
+                // this.products = this.products.filter((val) => !this.selectedProducts?.includes(val));
+                this.accountService
+                    .deleteSuits(this.selectedProducts!.map((suit) => suit.id!))
+                    .pipe(first())
+                    .subscribe({
+                        next: (message) => {
+                            this.accountService
+                                .getAllSuits()
+                                .pipe(first())
+                                .subscribe((suits) => {
+                                    this.products = suits;
+                                    this.messageService.add({
+                                        severity: "success",
+                                        summary: "Successful",
+                                        detail: message.toString(),
+                                        life: 3000,
+                                    });
+                                });
+                        },
+                        error: (error) => {
+                            this.messageService.add({
+                                severity: "error",
+                                summary: "Error",
+                                detail: error,
+                                life: 3000,
+                            });
+                        },
+                    });
                 this.selectedProducts = null;
-                this.messageService.add({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: "Products Deleted",
-                    life: 3000,
-                });
             },
         });
     }
@@ -142,13 +163,33 @@ export class AdminComponent implements OnInit {
             header: "Confirm",
             icon: "pi pi-exclamation-triangle",
             accept: () => {
-                this.products = this.products.filter((val) => val.id !== product.id);
-                this.messageService.add({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: "Product Deleted",
-                    life: 3000,
-                });
+                this.accountService
+                    .deleteSuit(product.id!)
+                    .pipe(first())
+                    .subscribe({
+                        next: (message) => {
+                            this.accountService
+                                .getAllSuits()
+                                .pipe(first())
+                                .subscribe((suits) => {
+                                    this.products = suits;
+                                    this.messageService.add({
+                                        severity: "success",
+                                        summary: "Successful",
+                                        detail: message.toString(),
+                                        life: 3000,
+                                    });
+                                });
+                        },
+                        error: (error) => {
+                            this.messageService.add({
+                                severity: "error",
+                                summary: "Error",
+                                detail: error,
+                                life: 3000,
+                            });
+                        },
+                    });
             },
         });
     }
@@ -163,13 +204,33 @@ export class AdminComponent implements OnInit {
 
         if (this.product.primaryInfo?.trim()) {
             if (this.product.id) {
-                this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: "Product Updated",
-                    life: 3000,
-                });
+                this.accountService
+                    .updateSuit(this.product.id, this.product)
+                    .pipe(first())
+                    .subscribe({
+                        next: (message) => {
+                            this.accountService
+                                .getAllSuits()
+                                .pipe(first())
+                                .subscribe((suits) => {
+                                    this.products = suits;
+                                    this.messageService.add({
+                                        severity: "success",
+                                        summary: "Successful",
+                                        detail: message.toString(),
+                                        life: 3000,
+                                    });
+                                });
+                        },
+                        error: (error) => {
+                            this.messageService.add({
+                                severity: "error",
+                                summary: "Error",
+                                detail: error,
+                                life: 3000,
+                            });
+                        },
+                    });
             } else {
                 this.accountService
                     .postSuit(this.product)
@@ -191,8 +252,8 @@ export class AdminComponent implements OnInit {
                         },
                         error: (error) => {
                             this.messageService.add({
-                                severity: "success",
-                                summary: "Successful",
+                                severity: "error",
+                                summary: "Error",
                                 detail: error,
                                 life: 3000,
                             });
