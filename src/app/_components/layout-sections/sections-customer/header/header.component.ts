@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink, RouterModule } from "@angular/router";
+import { Role } from "@app/_models/enums/role";
 import { User } from "@app/_models/user";
 import { HttpService } from "@app/_services/api/http.service";
 import { CartService } from "@app/_services/app/cart.service";
@@ -26,10 +27,13 @@ export class HeaderComponent {
         this.cartService.cart$.subscribe(() => {
             this.quantity = this.cartService.numberOfItemInTheBasket;
         });
-        // this.quantity = this.cartService.numberOfItemInTheBasket;
     }
 
     logout() {
         this.httpService.logout();
+    }
+
+    isAdmin(): boolean {
+        return this.user!.role === Role.admin;
     }
 }

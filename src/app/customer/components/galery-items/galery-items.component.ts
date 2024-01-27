@@ -4,13 +4,15 @@ import { Size } from "@app/_models/enums/size";
 import { SuitColour } from "@app/_models/enums/suit-colour";
 import { Suit } from "@app/_models/suit";
 import { HttpService } from "@app/_services/api/http.service";
-import { FilterApplyService } from "@app/_services/app/filter.service";
-import { FilterByColourService } from "@app/_services/app/filter.service";
-import { FilterByPriceRangeService } from "@app/_services/app/filter.service";
-import { FilterBySizeService } from "@app/_services/app/filter.service";
 import { first } from "rxjs";
 import { SkeletonModule } from "primeng/skeleton";
 import { QuickViewService } from "@app/_services/app/quick-view.service";
+import {
+    FilterApplyService,
+    FilterByColourService,
+    FilterByPriceRangeService,
+    FilterBySizeService,
+} from "@app/_services/app/filter.service";
 
 @Component({
     selector: "app-galery-items",

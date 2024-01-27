@@ -14,6 +14,9 @@ class AuthGuard {
         if (user && user.role === allowedRole) {
             // authorized, return true
             return true;
+        } else if (user) {
+            this.router.navigate(["/forbidden"], { queryParams: { returnUrl: state.url } });
+            return false;
         }
 
         // not logged in or unauthorized, redirect to login page with the return url

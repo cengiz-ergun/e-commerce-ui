@@ -6,6 +6,7 @@ import { ShopComponent } from "./pages/shop/shop.component";
 import { CartComponent } from "./pages/cart/cart.component";
 import { CheckoutComponent } from "./pages/checkout/checkout.component";
 import { customerGuard } from "@app/_models/guards/AuthGuard";
+import { ForbiddenComponent } from "./pages/forbidden/forbidden.component";
 
 export const CUSTOMER_ROUTES: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
@@ -15,4 +16,5 @@ export const CUSTOMER_ROUTES: Routes = [
     { path: "checkout", component: CheckoutComponent, canActivate: [customerGuard] },
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },
+    { path: "forbidden", component: ForbiddenComponent },
 ];

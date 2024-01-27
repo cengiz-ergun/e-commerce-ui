@@ -54,6 +54,13 @@
                                         </div>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a
+                                            *ngIf="isAdmin()"
+                                            class="dropdown-item pe-auto"
+                                            routerLink="/admin"
+                                            href="javascript:void(0);"
+                                            >Admin Panel</a
+                                        >
                                         <a class="dropdown-item pe-auto" (click)="logout()" href="javascript:void(0);"
                                             >Exit</a
                                         >
