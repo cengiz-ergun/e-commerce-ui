@@ -24,13 +24,13 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
                 return register();
             case url.endsWith("/suits") && method === "GET":
                 return getSuits();
-            case url.endsWith("/admin") && method === "POST":
+            case url.endsWith("/suits") && method === "POST":
                 return postSuit();
-            case url.match(/\/admin\/\d+$/) && method === "DELETE":
+            case url.match(/\/suits\/\d+$/) && method === "DELETE":
                 return deleteSuit();
-            case url.match(/\/admin\/\d+$/) && method === "PUT":
+            case url.match(/\/suits\/\d+$/) && method === "PUT":
                 return updateSuit();
-            case url.match("/admin/multiple-suits-delete") && method === "POST":
+            case url.match("/suits/multiple-suits-delete") && method === "POST":
                 return deleteSuits();
             default:
                 // pass through any requests not handled above
@@ -67,7 +67,7 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
         }
 
         user.id = users.length ? Math.max(...users.map((x) => x.id!)) + 1 : 1;
-        user.role = user.id === 1 ? Role.admin : Role.user;
+        user.role = user.id === 1 ? Role.admin : Role.customer;
         users.push(user);
         localStorage.setItem(usersKey, JSON.stringify(users));
         return ok();

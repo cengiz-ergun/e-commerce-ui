@@ -1,5 +1,5 @@
 export enum PageLayout {
     Blank = "blank",
-    User = "user", // user layout
+    Customer = "customer", // user layout
     Admin = "admin", // admin layout
 }

@@ -1,9 +1,9 @@
 <ng-container [ngSwitch]="pageLayoutService.layout$ | async">
     <router-outlet *ngSwitchCase="PageLayout.Blank"></router-outlet>
 
-    <app-layout-user *ngSwitchCase="PageLayout.User">
+    <app-layout-customer *ngSwitchCase="PageLayout.Customer">
         <router-outlet></router-outlet>
-    </app-layout-user>
+    </app-layout-customer>
 
     <app-layout-admin *ngSwitchCase="PageLayout.Admin">
         <router-outlet></router-outlet>

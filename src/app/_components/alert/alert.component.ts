@@ -1,6 +1,6 @@
 import { NgClass, NgIf } from "@angular/common";
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { AlertService } from "@app/_services/alert.service";
+import { AlertService } from "@app/_services/app/alert.service";
 import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
 

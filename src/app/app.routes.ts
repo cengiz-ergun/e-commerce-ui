@@ -1,9 +1,9 @@
 import { Routes } from "@angular/router";
-import { setLayout } from "./_services/page-layout.resolver";
+import { setLayout } from "./_services/app/page-layout.resolver";
 import { PageLayout } from "./_models/enums/page-layout";
-import { adminGuard } from "./_helpers/admin.guard";
+import { adminGuard } from "./_models/guards/AuthGuard";
 
-const userRoutes = () => import("./user/user.routes").then((x) => x.USER_ROUTES);
+const customerRoutes = () => import("./customer/customer.routes").then((x) => x.CUSTOMER_ROUTES);
 
 const adminRoutes = () => import("./admin/admin.routes").then((x) => x.ADMIN_ROUTES);
 
@@ -11,9 +11,9 @@ export const routes: Routes = [
     {
         path: "",
         resolve: {
-            layout: setLayout(PageLayout.User),
+            layout: setLayout(PageLayout.Customer),
         },
-        loadChildren: userRoutes,
+        loadChildren: customerRoutes,
     },
     {
         path: "admin",

@@ -14,7 +14,7 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { FormsModule } from "@angular/forms";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { CommonModule } from "@angular/common";
-import { AccountService } from "@app/_services/account.service";
+import { HttpService } from "@app/_services/api/http.service";
 import { first } from "rxjs";
 import { Suit } from "@app/_models/suit";
 import { Gender } from "@app/_models/enums/gender";
@@ -78,7 +78,7 @@ export class AdminComponent implements OnInit {
     constructor(
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
-        private accountService: AccountService
+        private httpService: HttpService
     ) {}
 
     stringToGender(gender: string): Gender {
@@ -99,7 +99,7 @@ export class AdminComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.accountService
+        this.httpService
             .getAllSuits()
             .pipe(first())
             .subscribe((suits) => {
@@ -120,12 +120,12 @@ export class AdminComponent implements OnInit {
             icon: "pi pi-exclamation-triangle",
             accept: () => {
                 // this.products = this.products.filter((val) => !this.selectedProducts?.includes(val));
-                this.accountService
+                this.httpService
                     .deleteSuits(this.selectedProducts!.map((suit) => suit.id!))
                     .pipe(first())
                     .subscribe({
                         next: (message) => {
-                            this.accountService
+                            this.httpService
                                 .getAllSuits()
                                 .pipe(first())
                                 .subscribe((suits) => {
@@ -163,12 +163,12 @@ export class AdminComponent implements OnInit {
             header: "Confirm",
             icon: "pi pi-exclamation-triangle",
             accept: () => {
-                this.accountService
+                this.httpService
                     .deleteSuit(product.id!)
                     .pipe(first())
                     .subscribe({
                         next: (message) => {
-                            this.accountService
+                            this.httpService
                                 .getAllSuits()
                                 .pipe(first())
                                 .subscribe((suits) => {
@@ -204,12 +204,12 @@ export class AdminComponent implements OnInit {
 
         if (this.product.primaryInfo?.trim()) {
             if (this.product.id) {
-                this.accountService
+                this.httpService
                     .updateSuit(this.product.id, this.product)
                     .pipe(first())
                     .subscribe({
                         next: (message) => {
-                            this.accountService
+                            this.httpService
                                 .getAllSuits()
                                 .pipe(first())
                                 .subscribe((suits) => {
@@ -232,12 +232,12 @@ export class AdminComponent implements OnInit {
                         },
                     });
             } else {
-                this.accountService
+                this.httpService
                     .postSuit(this.product)
                     .pipe(first())
                     .subscribe({
                         next: (message) => {
-                            this.accountService
+                            this.httpService
                                 .getAllSuits()
                                 .pipe(first())
                                 .subscribe((suits) => {
