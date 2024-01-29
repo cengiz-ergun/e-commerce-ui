@@ -1,4 +1,8 @@
+// export enum Role {
+//     admin,
+//     customer,
+// }
 export enum Role {
-    admin,
-    customer,
+    Admin = "admin",
+    Customer = "customer",
 }

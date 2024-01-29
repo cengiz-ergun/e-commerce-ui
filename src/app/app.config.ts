@@ -7,7 +7,7 @@ import {
 } from "@angular/router";
 import { routes } from "./app.routes";
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
-import { mockBackendInterceptor } from "./_helpers/mock-backend";
+// import { mockBackendInterceptor } from "./_helpers/mock-backend";
 import { jwtInterceptor } from "@app/_helpers/jwt.interceptor";
 import { errorInterceptor } from "@app/_helpers/error.interceptor";
 import { provideAnimations } from "@angular/platform-browser/animations";
@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
                 errorInterceptor,
 
                 // mock backend
-                mockBackendInterceptor,
+                // mockBackendInterceptor,
             ])
         ),
 

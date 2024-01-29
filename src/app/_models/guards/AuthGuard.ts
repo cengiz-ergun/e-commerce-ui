@@ -27,10 +27,10 @@ class AuthGuard {
 
 export function adminGuard(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const authGuard = new AuthGuard(inject(Router), inject(HttpService));
-    return authGuard.authorizeUser(Role.admin, state);
+    return authGuard.authorizeUser(Role.Admin, state);
 }
 
 export function customerGuard(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const authGuard = new AuthGuard(inject(Router), inject(HttpService));
-    return authGuard.authorizeUser(Role.customer, state);
+    return authGuard.authorizeUser(Role.Customer, state);
 }

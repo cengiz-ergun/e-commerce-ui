@@ -46,7 +46,7 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
         if (!user) return error("email or password is incorrect");
 
         let token: string;
-        if (user.role === Role.admin) {
+        if (user.role === Role.Admin) {
             token = "fake-admin-jwt-token";
         } else {
             token = "fake-user-jwt-token";
@@ -67,7 +67,7 @@ export function mockBackendInterceptor(request: HttpRequest<any>, next: HttpHand
         }
 
         user.id = users.length ? Math.max(...users.map((x) => x.id!)) + 1 : 1;
-        user.role = user.id === 1 ? Role.admin : Role.customer;
+        user.role = user.id === 1 ? Role.Admin : Role.Customer;
         users.push(user);
         localStorage.setItem(usersKey, JSON.stringify(users));
         return ok();

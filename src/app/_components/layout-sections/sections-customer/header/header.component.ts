@@ -34,6 +34,6 @@ export class HeaderComponent {
     }
 
     isAdmin(): boolean {
-        return this.user!.role === Role.admin;
+        return this.user!.role === Role.Admin;
     }
 }
