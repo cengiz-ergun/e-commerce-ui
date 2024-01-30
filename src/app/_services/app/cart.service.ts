@@ -33,7 +33,7 @@ export class CartService {
     updateCart(cartItem: CartItem) {
         // is there already a cart item with same id and size in the cart?
         const existingCartItem = this.cartSubject.value.cartItems.find(
-            (ci) => ci.id === cartItem.id && ci.size === cartItem.size
+            (ci) => ci.primaryInfo === cartItem.primaryInfo && ci.size === cartItem.size
         );
 
         // if there isn't, add this cart item to the cart
@@ -43,9 +43,9 @@ export class CartService {
             // if not, create a new cart item which has a quantity of sum of new and old quantities
             this.cartSubject.next({
                 cartItems: [
-                    ...this.cartSubject.value.cartItems.filter((ci) => ci.id !== cartItem.id),
+                    ...this.cartSubject.value.cartItems.filter((ci) => ci.primaryInfo !== cartItem.primaryInfo),
                     {
-                        id: cartItem.id,
+                        primaryInfo: cartItem.primaryInfo,
                         size: cartItem.size,
                         firstImgPath: cartItem.firstImgPath,
                         price: cartItem.price,

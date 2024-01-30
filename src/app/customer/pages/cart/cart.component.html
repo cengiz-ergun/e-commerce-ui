@@ -34,7 +34,7 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Id</th>
+                        <th>Name</th>
                         <th>Image</th>
                         <th>Price</th>
                         <th>Size</th>
@@ -43,7 +43,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-cartItem>
                     <tr>
-                        <td>{{ cartItem.id }}</td>
+                        <td>{{ cartItem.primaryInfo }}</td>
                         <td>
                             <img
                                 [src]="cartItem.firstImgPath"

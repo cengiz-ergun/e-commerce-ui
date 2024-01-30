@@ -5,7 +5,7 @@ import { Size } from "./enums/size";
 import { SuitColour } from "./enums/suit-colour";
 
 export interface Suit {
-    id?: number;
+    _id?: string;
     gender: Gender;
     price: number;
     currency: Currency;

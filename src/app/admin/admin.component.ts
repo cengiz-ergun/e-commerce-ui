@@ -121,7 +121,7 @@ export class AdminComponent implements OnInit {
             accept: () => {
                 // this.products = this.products.filter((val) => !this.selectedProducts?.includes(val));
                 this.httpService
-                    .deleteSuits(this.selectedProducts!.map((suit) => suit.id!))
+                    .deleteSuits(this.selectedProducts!.map((suit) => suit._id!))
                     .pipe(first())
                     .subscribe({
                         next: (message) => {
@@ -159,15 +159,15 @@ export class AdminComponent implements OnInit {
 
     deleteProduct(product: Suit) {
         this.confirmationService.confirm({
-            message: "Are you sure you want to delete id with " + product.id + "?",
+            message: "Are you sure you want to delete id with " + product._id + "?",
             header: "Confirm",
             icon: "pi pi-exclamation-triangle",
             accept: () => {
                 this.httpService
-                    .deleteSuit(product.id!)
+                    .deleteSuit(product._id!)
                     .pipe(first())
                     .subscribe({
-                        next: (message) => {
+                        next: (body: any) => {
                             this.httpService
                                 .getAllSuits()
                                 .pipe(first())
@@ -176,7 +176,7 @@ export class AdminComponent implements OnInit {
                                     this.messageService.add({
                                         severity: "success",
                                         summary: "Successful",
-                                        detail: message.toString(),
+                                        detail: body.message.toString(),
                                         life: 3000,
                                     });
                                 });
@@ -203,9 +203,9 @@ export class AdminComponent implements OnInit {
         this.submitted = true;
 
         if (this.product.primaryInfo?.trim()) {
-            if (this.product.id) {
+            if (this.product._id) {
                 this.httpService
-                    .updateSuit(this.product.id, this.product)
+                    .updateSuit(this.product._id, this.product)
                     .pipe(first())
                     .subscribe({
                         next: (message) => {
@@ -267,10 +267,10 @@ export class AdminComponent implements OnInit {
         }
     }
 
-    findIndexById(id: number): number {
+    findIndexById(id: string): number {
         let index = -1;
         for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === Number(id)) {
+            if (this.products[i]._id === id) {
                 index = i;
                 break;
             }

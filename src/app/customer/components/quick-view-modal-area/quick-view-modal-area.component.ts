@@ -57,7 +57,7 @@ export class QuickViewModalAreaComponent implements OnInit {
     addToTheCart() {
         this.alertService.clear();
         const cartItem: CartItem = {
-            id: this.suit!.id!,
+            primaryInfo: this.suit!.primaryInfo,
             size: this.selectedSize!,
             quantity: this.cartItemQuantity,
             price: this.suit!.price,

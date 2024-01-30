@@ -53,15 +53,15 @@ export class HttpService {
         return this.http.post(`${environment.apiUrl}/suits`, suit);
     }
 
-    deleteSuit(id: number) {
+    deleteSuit(id: string) {
         return this.http.delete(`${environment.apiUrl}/suits/${id}`);
     }
 
-    deleteSuits(ids: number[]) {
+    deleteSuits(ids: string[]) {
         return this.http.post(`${environment.apiUrl}/suits/multiple-suits-delete`, { ids: ids });
     }
 
-    updateSuit(id: number, suit: Suit) {
+    updateSuit(id: string, suit: Suit) {
         return this.http.put(`${environment.apiUrl}/suits/${id}`, suit);
     }
 }

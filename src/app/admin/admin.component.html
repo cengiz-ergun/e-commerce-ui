@@ -31,7 +31,7 @@
         [tableStyle]="{ 'min-width': '75rem' }"
         [(selection)]="selectedProducts"
         [rowHover]="true"
-        dataKey="id"
+        dataKey="_id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [showCurrentPageReport]="true"
     >
@@ -68,7 +68,7 @@
                 </td>
                 <td>{{ suit.primaryInfo }}</td>
                 <td>
-                    <img [src]="suit.imgPaths[0]" [alt]="'img' + suit.id" width="50" class="shadow-4" />
+                    <img [src]="suit.imgPaths[0]" [alt]="'img' + suit._id" width="50" class="shadow-4" />
                 </td>
                 <td>{{ suit.price }}</td>
                 <td>
