@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from "@angular/common";
+import { CurrencyPipe, NgFor, NgIf } from "@angular/common";
 import { Component, HostListener, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CartItem } from "@app/_models/cart-item";
@@ -12,7 +12,7 @@ import { RadioButtonModule } from "primeng/radiobutton";
 @Component({
     selector: "app-quick-view-modal-area",
     standalone: true,
-    imports: [NgIf, NgFor, FormsModule, RadioButtonModule],
+    imports: [NgIf, NgFor, FormsModule, RadioButtonModule, CurrencyPipe],
     templateUrl: "./quick-view-modal-area.component.html",
     styleUrl: "./quick-view-modal-area.component.scss",
 })

@@ -33,11 +33,10 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
-                                    <h5 class="price">{{ suit.price }}</h5>
+                                    <h5 class="price">{{ suit.price | currency: "₺" }}</h5>
                                     <p>
                                         {{ suit.secondaryInfo }}
                                     </p>
-                                    <a href="#">View Full Product Details</a>
                                 </div>
 
                                 <div class="d-flex flex-column gap-3">
@@ -48,12 +47,12 @@
                                             [value]="size"
                                             [(ngModel)]="selectedSize"
                                         ></p-radioButton>
-                                        <label [for]="size" class="ml-2">{{ size }}</label>
+                                        <label [for]="size" class="ms-2">{{ size }}</label>
                                     </div>
                                 </div>
 
                                 <!-- Add to Cart Form -->
-                                <form class="cart" method="post">
+                                <form class="cart mt-4" method="post">
                                     <div class="quantity">
                                         <span class="qty-minus" (click)="decrease()"
                                             ><i class="fa fa-minus" aria-hidden="true"></i
@@ -83,25 +82,7 @@
                                     >
                                         Add to cart
                                     </button>
-                                    <!-- Wishlist -->
-                                    <div class="modal_pro_wishlist">
-                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                    </div>
-                                    <!-- Compare -->
-                                    <div class="modal_pro_compare">
-                                        <a href="compare.html" target="_blank"><i class="ti-stats-up"></i></a>
-                                    </div>
                                 </form>
-
-                                <div class="share_wf mt-30">
-                                    <p>Share With Friend</p>
-                                    <div class="_icon">
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

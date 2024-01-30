@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
         colour: SuitColour.Black,
         brand: Brand.Farah,
         available: false,
-        imgPaths: [],
+        imgPaths: ["http://localhost:3000/suits/star.png"],
         stock: 0,
     };
     selectedProducts!: Suit[] | null;
@@ -94,8 +94,9 @@ export class AdminComponent implements OnInit {
         return Brand[brand as keyof typeof Brand];
     }
 
+    /* eslint-disable */
     onSizeSelectionChange(size: string) {
-        this.product = { ...this.product, sizes: [...this.product.sizes, Size[size as keyof typeof Size]] };
+        // this.product = { ...this.product, sizes: [...this.product.sizes, Size[size as keyof typeof Size]] };
     }
 
     ngOnInit() {
@@ -124,7 +125,7 @@ export class AdminComponent implements OnInit {
                     .deleteSuits(this.selectedProducts!.map((suit) => suit._id!))
                     .pipe(first())
                     .subscribe({
-                        next: (message) => {
+                        next: (response: any) => {
                             this.httpService
                                 .getAllSuits()
                                 .pipe(first())
@@ -133,7 +134,7 @@ export class AdminComponent implements OnInit {
                                     this.messageService.add({
                                         severity: "success",
                                         summary: "Successful",
-                                        detail: message.toString(),
+                                        detail: response.message.toString(),
                                         life: 3000,
                                     });
                                 });
@@ -208,7 +209,7 @@ export class AdminComponent implements OnInit {
                     .updateSuit(this.product._id, this.product)
                     .pipe(first())
                     .subscribe({
-                        next: (message) => {
+                        next: (response: any) => {
                             this.httpService
                                 .getAllSuits()
                                 .pipe(first())
@@ -217,7 +218,7 @@ export class AdminComponent implements OnInit {
                                     this.messageService.add({
                                         severity: "success",
                                         summary: "Successful",
-                                        detail: message.toString(),
+                                        detail: response.message.toString(),
                                         life: 3000,
                                     });
                                 });
@@ -236,7 +237,7 @@ export class AdminComponent implements OnInit {
                     .postSuit(this.product)
                     .pipe(first())
                     .subscribe({
-                        next: (message) => {
+                        next: (response: any) => {
                             this.httpService
                                 .getAllSuits()
                                 .pipe(first())
@@ -245,7 +246,7 @@ export class AdminComponent implements OnInit {
                                     this.messageService.add({
                                         severity: "success",
                                         summary: "Successful",
-                                        detail: message.toString(),
+                                        detail: response.message.toString(),
                                         life: 3000,
                                     });
                                 });
