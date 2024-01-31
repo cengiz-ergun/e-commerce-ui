@@ -1,7 +1,6 @@
 import { inject } from "@angular/core";
 import { HttpRequest, HttpHandlerFn } from "@angular/common/http";
 
-import { environment } from "@environments/environment";
 import { HttpService } from "@app/_services/api/http.service";
 
 export function jwtInterceptor(request: HttpRequest<any>, next: HttpHandlerFn) {
@@ -9,7 +8,7 @@ export function jwtInterceptor(request: HttpRequest<any>, next: HttpHandlerFn) {
     const httpService = inject(HttpService);
     const user = httpService.userValue;
     const isLoggedIn = user?.token;
-    const isApiUrl = request.url.startsWith(environment.apiUrl);
+    const isApiUrl = request.url.startsWith(import.meta.env.NG_APP_API_URL);
     if (isLoggedIn && isApiUrl) {
         request = request.clone({
             setHeaders: { Authorization: `Bearer ${user.token}` },

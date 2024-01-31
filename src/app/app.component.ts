@@ -6,6 +6,7 @@ import { PageLayoutService } from "./_services/app/page-layout.service";
 import { PageLayout } from "./_models/enums/page-layout";
 import { LayoutCustomerComponent } from "./_components/layouts/layout-customer/layout-customer.component";
 import { LayoutAdminComponent } from "./_components/layouts/layout-admin/layout-admin.component";
+// import { environment } from "./../environments/environment";
 
 @Component({
     selector: "app-root",
@@ -25,5 +26,8 @@ import { LayoutAdminComponent } from "./_components/layouts/layout-admin/layout-
 export class AppComponent {
     readonly PageLayout = PageLayout;
 
-    constructor(public pageLayoutService: PageLayoutService) {}
+    constructor(public pageLayoutService: PageLayoutService) {
+        console.log(process.env.NG_APP_API_URL);
+        // console.log(environment.apiUrl);
+    }
 }

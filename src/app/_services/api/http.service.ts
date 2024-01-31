@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable, map } from "rxjs";
-import { environment } from "@environments/environment";
 import { Suit } from "@app/_models/suit";
 import { User } from "@app/_models/user";
 
@@ -24,7 +23,7 @@ export class HttpService {
     }
 
     login(email: string, password: string) {
-        return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { email, password }).pipe(
+        return this.http.post<User>(`${import.meta.env.NG_APP_API_URL}/users/authenticate`, { email, password }).pipe(
             map((user) => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem("user", JSON.stringify(user));
@@ -35,7 +34,7 @@ export class HttpService {
     }
 
     register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+        return this.http.post(`${import.meta.env.NG_APP_API_URL}/users/register`, user);
     }
 
     logout() {
@@ -46,22 +45,22 @@ export class HttpService {
     }
 
     getAllSuits() {
-        return this.http.get<Suit[]>(`${environment.apiUrl}/suits`);
+        return this.http.get<Suit[]>(`${import.meta.env.NG_APP_API_URL}/suits`);
     }
 
     postSuit(suit: Suit) {
-        return this.http.post(`${environment.apiUrl}/suits`, suit);
+        return this.http.post(`${import.meta.env.NG_APP_API_URL}/suits`, suit);
     }
 
     deleteSuit(id: string) {
-        return this.http.delete(`${environment.apiUrl}/suits/${id}`);
+        return this.http.delete(`${import.meta.env.NG_APP_API_URL}/suits/${id}`);
     }
 
     deleteSuits(ids: string[]) {
-        return this.http.post(`${environment.apiUrl}/suits/multiple-suits-delete`, { ids: ids });
+        return this.http.post(`${import.meta.env.NG_APP_API_URL}/suits/multiple-suits-delete`, { ids: ids });
     }
 
     updateSuit(id: string, suit: Suit) {
-        return this.http.put(`${environment.apiUrl}/suits/${id}`, suit);
+        return this.http.put(`${import.meta.env.NG_APP_API_URL}/suits/${id}`, suit);
     }
 }
