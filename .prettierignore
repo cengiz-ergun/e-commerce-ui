@@ -2,6 +2,7 @@ node_modules/
 dist/
 tailwind.config.js
 src/assets/
+README.md
 
 # IDE - VSCode
 .vscode/*

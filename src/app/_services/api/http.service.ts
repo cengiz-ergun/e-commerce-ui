@@ -4,17 +4,20 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable, map } from "rxjs";
 import { Suit } from "@app/_models/suit";
 import { User } from "@app/_models/user";
+import { jwtDecode } from "jwt-decode";
 
 @Injectable({ providedIn: "root" })
 export class HttpService {
     private userSubject: BehaviorSubject<User | null>;
+    private token: string | null;
     public user: Observable<User | null>;
 
     constructor(
         private router: Router,
         private http: HttpClient
     ) {
-        this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem("user")!));
+        this.token = localStorage.getItem("access-token");
+        this.userSubject = new BehaviorSubject<any>(this.token ? this.parseUserToken(this.token) : null);
         this.user = this.userSubject.asObservable();
     }
 
@@ -22,13 +25,20 @@ export class HttpService {
         return this.userSubject.value;
     }
 
+    parseUserToken(token: string): User {
+        const result = jwtDecode(token);
+        const logInUser: User = result as User;
+        logInUser.token = token;
+        return logInUser;
+    }
+
     login(email: string, password: string) {
-        return this.http.post<User>(`${import.meta.env.NG_APP_API_URL}/users/authenticate`, { email, password }).pipe(
-            map((user) => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem("user", JSON.stringify(user));
-                this.userSubject.next(user);
-                return user;
+        return this.http.post<any>(`${import.meta.env.NG_APP_API_URL}/users/authenticate`, { email, password }).pipe(
+            map((response) => {
+                // store jwt token in local storage
+                localStorage.setItem("access-token", response.token);
+
+                this.userSubject.next(this.parseUserToken(response.token));
             })
         );
     }
@@ -39,7 +49,7 @@ export class HttpService {
 
     logout() {
         // remove user from local storage and set current user to null
-        localStorage.removeItem("user");
+        localStorage.removeItem("access-token");
         this.userSubject.next(null);
         this.router.navigate(["/login"]);
     }

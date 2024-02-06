@@ -20,9 +20,7 @@ export class QuickViewModalAreaComponent implements OnInit {
     // When clicking outside the modal, make cartItemQuantity 1
     @HostListener("document:click")
     outsideComponent() {
-        if (this.cartItemQuantity !== 1) {
-            this.cartItemQuantity = 1;
-        }
+        this.cartItemQuantity = 1;
     }
     @HostListener("click", ["$event"])
     insideComponent(e: any) {
